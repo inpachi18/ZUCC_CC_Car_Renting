@@ -1,0 +1,65 @@
+package model;
+
+public class BeanCar {
+    /** 车辆编号 */
+    private Integer number ;
+    /** 网点编号 */
+    private Integer branchNumber ;
+    /** 车牌号 */
+    private String numberplate ;
+    /** 所属车型 */
+    private Integer type ;
+    /** 所在网点 */
+    private Integer branch ;
+    /** 当前状态 */
+    private String state ;
+
+    /** 车辆编号 */
+    public Integer getNumber(){
+        return this.number;
+    }
+    /** 车辆编号 */
+    public void setNumber(Integer number){
+        this.number=number;
+    }
+    /** 网点编号 */
+    public Integer getBranchNumber(){
+        return this.branchNumber;
+    }
+    /** 网点编号 */
+    public void setBranchNumber(Integer branchNumber){
+        this.branchNumber=branchNumber;
+    }
+    /** 车牌号 */
+    public String getNumberplate(){
+        return this.numberplate;
+    }
+    /** 车牌号 */
+    public void setNumberplate(String numberplate){
+        this.numberplate=numberplate;
+    }
+    /** 所属车型 */
+    public Integer getType(){
+        return this.type;
+    }
+    /** 所属车型 */
+    public void setType(Integer type){
+        this.type=type;
+    }
+    /** 所在网点 */
+    public Integer getBranch(){
+        return this.branch;
+    }
+    /** 所在网点 */
+    public void setBranch(Integer branch){
+        this.branch=branch;
+    }
+    /** 当前状态 */
+    public String getState(){
+        return this.state;
+    }
+    /** 当前状态 */
+    public void setState(String state){
+        this.state=state;
+    }
+}

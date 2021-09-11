@@ -1,0 +1,80 @@
+JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {comp label3:::::x, space :::p}, seq t {space :p:54:p, par l {comp label6::t:::x, comp label5::t:::x, comp label4::l:::x, seq {par l:::p {comp label7::::98:x, comp label8::::98:x, comp label9::::98:x}, space :0:0:x}}, space s:::p, par l:::p {comp passwordField1:::::x, comp textField1:::::x, comp textField2::::282:x, comp textField3::::282:x, comp textField4::l::282:x, comp textField5::::282:x}, space :p:83:p}, seq l {space :p:205:p, comp button1:::p::p, space ::212:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label3:::p:45:p, space u:::p, par l:::p {comp textField1:::p::p, seq {space :8:8:p, comp label4:::::x}}, space u:::p, par l:::p {comp passwordField1:::::x, comp label5:::::x}, space :::p, par t {comp label6:::p:41:p, comp textField2:::p::p}, space :::p, par b {comp label7::b:p:41:p, comp textField3::b:p::p}, space u:::p, par l:::p {comp textField4:::::x, comp label8:::::x}, space u:::p, par l:::p {comp textField5:::::x, comp label9:::::x}, space u:::p, comp button1:::p::p, space ::17:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "欢迎注册"
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "用户名"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "密码"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "性别"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField2"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField3"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "手机号码"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField4"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "邮箱"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField5"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "所在城市"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "注册"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 535, 480 )
+		} )
+		add( new FormComponent( "javax.swing.JLabel" ) {
+			name: "label1"
+			"text": "text"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 25 )
+			"size": new java.awt.Dimension( 535, 55 )
+		} )
+		add( new FormComponent( "javax.swing.JLabel" ) {
+			name: "label2"
+			"text": "text"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 25 )
+		} )
+	}
+}

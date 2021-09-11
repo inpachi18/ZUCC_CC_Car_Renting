@@ -1,0 +1,309 @@
+JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp menuBar1::::1893:x, comp scrollPane1::::1893:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp menuBar1:::p::p, space :::p, comp scrollPane1::::1267:x, space :::p}}"
+		} ) {
+			name: "主界面"
+			"maximumSize": new java.awt.Dimension( 1920, 1080 )
+			"minimumSize": new java.awt.Dimension( 1920, 1080 )
+			"preferredSize": new java.awt.Dimension( 1920, 1080 )
+			add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "用户功能"
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu4"
+						"text": "个人信息"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem53"
+							"text": "查看个人信息"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem2"
+							"text": "修改密码"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem3"
+							"text": "修改个人信息"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu5"
+						"text": "租车功能"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem4"
+							"text": "查询当前可用车辆"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem5"
+							"text": "查询优惠券列表"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem8"
+							"text": "租车状态查询"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem6"
+							"text": "租用车辆"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem7"
+							"text": "归还车辆"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem9"
+							"text": "历史订单查询"
+						} )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu2"
+					"text": "员工功能"
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu6"
+						"text": "个人信息管理"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem10"
+							"text": "修改密码"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem11"
+							"text": "修改个人信息"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu7"
+						"text": "网点车辆管理"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem12"
+							"text": "查询当前网点车辆"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem13"
+							"text": "查询全部可用车辆"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem14"
+							"text": "申请车辆调配"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem15"
+							"text": "报废车辆"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu8"
+						"text": "优惠券管理"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem16"
+							"text": "优惠券列表查询"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem17"
+							"text": "优惠券添加"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem18"
+							"text": "优惠券修改"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu9"
+						"text": "订单管理"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem19"
+							"text": "订单查询"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem20"
+							"text": "订单修改"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu10"
+						"text": "促销管理"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem21"
+							"text": "促销创建"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem22"
+							"text": "促销管理"
+						} )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu3"
+					"text": "管理员功能"
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu11"
+						"text": "人员管理"
+						add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+							name: "menu12"
+							"text": "用户管理"
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem26"
+								"text": "新增用户"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem26ActionPerformed", true ) )
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem29"
+								"text": "查看用户列表"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem23"
+								"text": "用户信息查询"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem24"
+								"text": "用户信息修改"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem25"
+								"text": "用户信息删除"
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+							name: "menu13"
+							"text": "员工管理"
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem27"
+								"text": "新增员工"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem30"
+								"text": "查看员工列表"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem28"
+								"text": "员工信息查询"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem31"
+								"text": "员工信息修改"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem32"
+								"text": "员工信息删除"
+							} )
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu14"
+						"text": "车辆管理"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem33"
+							"text": "新增车辆"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem34"
+							"text": "车辆列表查询"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem38"
+							"text": "车辆调配"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem35"
+							"text": "车辆信息修改"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem36"
+							"text": "车辆删除"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem37"
+							"text": "车辆报废"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu15"
+						"text": "订单管理"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem42"
+							"text": "订单列表"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem39"
+							"text": "订单查询"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem40"
+							"text": "订单修改"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem41"
+							"text": "订单删除"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu16"
+						"text": "促销管理"
+						add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+							name: "menu17"
+							"text": "优惠券管理"
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem46"
+								"text": "优惠券创建"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem43"
+								"text": "优惠券列表"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem44"
+								"text": "优惠券查询"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem45"
+								"text": "优惠券修改"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem47"
+								"text": "优惠券删除"
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+							name: "menu18"
+							"text": "限时促销管理"
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem48"
+								"text": "限时促销创建"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem49"
+								"text": "限时促销列表"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem50"
+								"text": "限时促销查询"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem51"
+								"text": "限时促销管理"
+							} )
+							add( new FormComponent( "javax.swing.JMenuItem" ) {
+								name: "menuItem52"
+								"text": "限时促销删除"
+							} )
+						} )
+					} )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1905, 1320 )
+		} )
+	}
+}
