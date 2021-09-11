@@ -1,0 +1,3161 @@
+{
+  "name": "租车",
+  "describe": "租车",
+  "avatar": "",
+  "version": "3.2.0",
+  "createdTime": "2021-9-7 08:57:29",
+  "updatedTime": "2021-9-9 09:24:14",
+  "dbConns": [],
+  "profile": {
+    "default": {
+      "db": "MYSQL",
+      "dbConn": "7C8A4E53-3F11-46F2-A592-137DCBE0B421",
+      "entityInitFields": [
+        {
+          "defKey": "TENANT_ID",
+          "defName": "租户号",
+          "comment": "",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "domain": "IdOrKey"
+        },
+        {
+          "defKey": "REVISION",
+          "defName": "乐观锁",
+          "comment": "",
+          "domain": "IdOrKey",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true
+        },
+        {
+          "defKey": "CREATED_BY",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "IdOrKey",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true
+        },
+        {
+          "defKey": "CREATED_TIME",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true
+        },
+        {
+          "defKey": "UPDATED_BY",
+          "defName": "更新人",
+          "comment": "",
+          "domain": "IdOrKey",
+          "type": "",
+          "len": 32,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true
+        },
+        {
+          "defKey": "UPDATED_TIME",
+          "defName": "更新时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true
+        }
+      ],
+      "entityInitProperties": {}
+    },
+    "javaHome": "",
+    "sql": {
+      "delimiter": ""
+    },
+    "dataTypeSupports": [
+      "MYSQL",
+      "ORACLE",
+      "SQLServer",
+      "PostgreSQL",
+      "DB2",
+      "DM",
+      "GaussDB",
+      "Kingbase",
+      "JAVA",
+      "C#"
+    ],
+    "codeTemplates": [
+      {
+        "type": "dbDDL",
+        "isDefault": true,
+        "applyFor": "MYSQL",
+        "createTable": "DROP TABLE IF EXISTS {{=it.entity.defKey}};\nCREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}} {{= field.notNull ? 'NOT NULL' : '' }} {{= field.autoIncrement ? 'AUTO_INCREMENT' : '' }} {{= field.defaultValue ? it.func.join('DEFAULT',field.defaultValue,' ') : '' }} COMMENT '{{=it.func.join(field.defName,field.comment,';')}}' {{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n)  COMMENT = '{{=it.func.join(it.entity.defName,it.entity.comment,';') }}';\n$blankline\n",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "dbDDL",
+        "isDefault": true,
+        "applyFor": "ORACLE",
+        "createTable": "CREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? '' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n);\n$blankline\n{{? it.entity.defKey || it.entity.defName}}COMMENT ON TABLE {{=it.entity.defKey}} IS '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}';{{?}}\n{{~it.entity.fields:field:index}}\n{{? field.defName || field.comment}}COMMENT ON COLUMN {{=it.entity.defKey}}.{{=field.defKey}} IS '{{=it.func.join(field.defName,field.comment,';')}}';{{?}}\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "dbDDL",
+        "isDefault": true,
+        "applyFor": "SQLServer",
+        "createTable": "DROP TABLE IF EXISTS {{=it.entity.defKey}};\nCREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? ' IDENTITY(1,1)' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n){{=it.separator}}\n$blankline\n{{? it.entity.defKey || it.entity.defName}}EXEC sp_addextendedproperty 'MS_Description', '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}', 'SCHEMA', dbo, 'table', {{=it.entity.defKey}}, null, null;{{?}}\n{{~it.entity.fields:field:index}}\nEXEC sp_addextendedproperty 'MS_Description', '{{=it.func.join(field.defName,field.comment,';')}}', 'SCHEMA', dbo, 'table', {{=it.entity.defKey}}, 'column', {{=field.defKey}};\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "dbDDL",
+        "isDefault": true,
+        "applyFor": "PostgreSQL",
+        "createTable": "DROP TABLE IF EXISTS {{=it.entity.defKey}};\nCREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? ' AUTO_INCREMENT' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n);\n$blankline\n{{? it.entity.defKey || it.entity.defName}}COMMENT ON TABLE {{=it.entity.defKey}} IS '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}';{{?}}\n{{~it.entity.fields:field:index}}\n{{? field.defName || field.comment}}COMMENT ON COLUMN {{=it.entity.defKey}}.{{=field.defKey}} IS '{{=it.func.join(field.defName,field.comment,';')}}';{{?}}\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "appCode",
+        "isDefault": true,
+        "applyFor": "JAVA",
+        "content": "package cn.com.chiner.entity;\n$blankline\nimport javax.persistence.*;\nimport java.io.Serializable;\nimport java.util.Date;\n$blankline\n{{\n    var today=new Date();\n    var fullYear=today.getFullYear();\n    var month=today.getMonth() + 1;\n    var days=today.getDate();\n}}\n /**\n * @author : http://www.chiner.pro\n * @date : {{=fullYear}}-{{=month}}-{{=days}}\n * @desc : {{=it.func.join(it.entity.defName,it.entity.comment,'-')}}\n */\n@Table(name=\"{{=it.entity.defKey}}\")\npublic class {{=it.func.camel(it.entity.defKey,true) }} implements Serializable,Cloneable{\n{{~it.entity.fields:field:index}}\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    {{? field.primaryKey }}\n    @Id\n    @GeneratedValue\n    {{?}}\n    private {{=field.type}} {{=it.func.camel(field.defKey,false)}} ;\n{{~}}\n$blankline\n\n{{~it.entity.fields:field:index}}\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    public {{=field.type}} get{{=it.func.camel(field.defKey,true)}}(){\n        return this.{{=it.func.camel(field.defKey,false)}};\n    }\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    public void set{{=it.func.camel(field.defKey,true)}}({{=field.type}} {{= it.func.camel(field.defKey,false) }}){\n        return this.{{=it.func.camel(field.defKey,false)}}={{=it.func.camel(field.defKey,false)}};\n    }\n{{~}}\n}"
+      },
+      {
+        "type": "dbDDL",
+        "isDefault": true,
+        "applyFor": "DB2",
+        "createTable": "CREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? '' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n);\n$blankline\n{{? it.entity.defKey || it.entity.defName}}COMMENT ON TABLE {{=it.entity.defKey}} IS '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}';{{?}}\n{{~it.entity.fields:field:index}}\n{{? field.defName || field.comment}}COMMENT ON COLUMN {{=it.entity.defKey}}.{{=field.defKey}} IS '{{=it.func.join(field.defName,field.comment,';')}}';{{?}}\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "dbDDL",
+        "isDefault": true,
+        "applyFor": "DM",
+        "createTable": "CREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? '' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ','('+field.defaultValue+')',' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n);\n$blankline\n{{? it.entity.defKey || it.entity.defName}}COMMENT ON TABLE {{=it.entity.defKey}} IS '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}';{{?}}\n{{~it.entity.fields:field:index}}\n{{? field.defName || field.comment}}COMMENT ON COLUMN {{=it.entity.defKey}}.{{=field.defKey}} IS '{{=it.func.join(field.defName,field.comment,';')}}';{{?}}\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "appCode",
+        "isDefault": true,
+        "applyFor": "C#",
+        "content": "using System;\nusing System.Collections.Generic;\n\n$blankline\n{{\n    var today=new Date();\n    var fullYear=today.getFullYear();\n    var month=today.getMonth() + 1;\n    var days=today.getDate();\n}}\n/*\n * @author : http://www.chiner.com.cn\n * @date : {{=fullYear}}-{{=month}}-{{=days}}\n * @desc : {{=it.func.join(it.entity.defName,it.entity.comment,'-')}}\n */\nnamespace Chiner.Application\n{\n    public partial class {{=it.func.camel(it.entity.defKey,true) }}\n    {\n    \n        {{~it.entity.fields:field:index}}\n        /// <summary>\n        /// {{=it.func.join(field.defName,field.comment,';')}}\n        /// </summary>\n        public {{=field.type}} {{=it.func.camel(field.defKey,true)}} { get; set; }\n        $blankline\n        {{~}}\n        \n    }\n}"
+      },
+      {
+        "type": "dbDDL",
+        "isDefault": true,
+        "applyFor": "GaussDB",
+        "createTable": "DROP TABLE IF EXISTS {{=it.entity.defKey}};\nCREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? ' AUTO_INCREMENT' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n);\n$blankline\n{{? it.entity.defKey || it.entity.defName}}COMMENT ON TABLE {{=it.entity.defKey}} IS '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}';{{?}}\n{{~it.entity.fields:field:index}}\n{{? field.defName || field.comment}}COMMENT ON COLUMN {{=it.entity.defKey}}.{{=field.defKey}} IS '{{=it.func.join(field.defName,field.comment,';')}}';{{?}}\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "dbDDL",
+        "isDefault": true,
+        "applyFor": "Kingbase",
+        "createTable": "DROP TABLE IF EXISTS {{=it.entity.defKey}};\nCREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? ' AUTO_INCREMENT' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n);\n$blankline\n{{? it.entity.defKey || it.entity.defName}}COMMENT ON TABLE {{=it.entity.defKey}} IS '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}';{{?}}\n{{~it.entity.fields:field:index}}\n{{? field.defName || field.comment}}COMMENT ON COLUMN {{=it.entity.defKey}}.{{=field.defKey}} IS '{{=it.func.join(field.defName,field.comment,';')}}';{{?}}\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "dbDDL",
+        "applyFor": "dictSQLTemplate",
+        "content": "/* 插入字典总表[{{=it.dict.defKey}}-{{=it.dict.defName}}] */\nINSERT INTO SYS_DICT(KEY_,LABEL,INTRO,REVISION) VALUES('{{=it.dict.defKey}}','{{=it.dict.defName}}','{{=it.dict.intro}}',1);\n/* 插入字典明细表 */\n{{~it.dict.items:item:index}}\nINSERT INTO SYS_DICT_ITEM(DICT_KEY,KEY_,LABEL,SORT_,INTRO,REVISION) VALUES('{{=it.dict.defKey}}','{{=item.defKey}}','{{=item.defName}}','{{=item.sort}}','{{=item.intro}}',1);\n{{~}}"
+      }
+    ],
+    "generatorDoc": {
+      "docTemplate": ""
+    },
+    "relationFieldSize": "15",
+    "uiHint": [
+      {
+        "defKey": "Input",
+        "defName": "普通输入框"
+      },
+      {
+        "defKey": "Select",
+        "defName": "下拉输入框"
+      },
+      {
+        "defKey": "CheckBox",
+        "defName": "复选框"
+      },
+      {
+        "defKey": "RadioBox",
+        "defName": "单选框"
+      },
+      {
+        "defKey": "Double",
+        "defName": "小数输入"
+      },
+      {
+        "defKey": "Integer",
+        "defName": "整数输入"
+      },
+      {
+        "defKey": "Money",
+        "defName": "金额输入"
+      },
+      {
+        "defKey": "Date",
+        "defName": "日期输入"
+      },
+      {
+        "defKey": "DataYearMonth",
+        "defName": "年月输入"
+      },
+      {
+        "defKey": "Text",
+        "defName": "长文本输入"
+      },
+      {
+        "defKey": "RichText",
+        "defName": "富文本输入"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "rowNo": 1,
+      "defKey": "Car_Type",
+      "defName": "汽车类别",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Number",
+          "defName": "类别编号",
+          "comment": "",
+          "domain": "",
+          "type": "int",
+          "len": null,
+          "scale": null,
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Name",
+          "defName": "类别名称",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Information",
+          "defName": "类别描述",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 1024,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(1024)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": []
+    },
+    {
+      "rowNo": 2,
+      "defKey": "Car_Model",
+      "defName": "车型信息",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Number",
+          "defName": "车型编号",
+          "comment": "",
+          "domain": "",
+          "type": "int",
+          "len": null,
+          "scale": null,
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Name",
+          "defName": "车型名称",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Brand",
+          "defName": "品牌",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 5,
+          "defKey": "Displacement",
+          "defName": "排量",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 6,
+          "defKey": "Gears",
+          "defName": "排挡",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 7,
+          "defKey": "Seats",
+          "defName": "座位数",
+          "comment": "",
+          "domain": "",
+          "type": "int",
+          "len": null,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 8,
+          "defKey": "Price",
+          "defName": "价格",
+          "comment": "",
+          "domain": "",
+          "type": "float",
+          "len": null,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "float",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 9,
+          "defKey": "Picture",
+          "defName": "图片（链接）",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 1024,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(1024)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "defKey": "Type",
+          "defName": "所属类别",
+          "comment": "",
+          "type": "int",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": [
+        {
+          "myField": "Number",
+          "refEntity": "FlashSale",
+          "refField": "Car_Model",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        },
+        {
+          "myField": "Type",
+          "refEntity": "Car_Type",
+          "refField": "Number",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        }
+      ]
+    },
+    {
+      "rowNo": 3,
+      "defKey": "Branch",
+      "defName": "网点信息",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Number",
+          "defName": "网点编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Name",
+          "defName": "网点名称",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "City",
+          "defName": "所属城市",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Address",
+          "defName": "地址",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 5,
+          "defKey": "Telephone",
+          "defName": "联系电话",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": []
+    },
+    {
+      "rowNo": 4,
+      "defKey": "Coupon",
+      "defName": "优惠券",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Number",
+          "defName": "优惠券编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Information",
+          "defName": "内容",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Discount",
+          "defName": "减免金额",
+          "comment": "",
+          "domain": "Double",
+          "type": "DECIMAL",
+          "len": 24,
+          "scale": 6,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "float",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "StartDate",
+          "defName": "起始日期",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 5,
+          "defKey": "FinishDate",
+          "defName": "结束日期",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": []
+    },
+    {
+      "rowNo": 5,
+      "defKey": "FlashSale",
+      "defName": "限时促销信息",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Sale_Number",
+          "defName": "促销编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Branch_Number",
+          "defName": "网点编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Car_Model",
+          "defName": "车辆型号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Sale_Discount",
+          "defName": "促销折扣",
+          "comment": "",
+          "domain": "Double",
+          "type": "DECIMAL",
+          "len": 24,
+          "scale": 6,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "float",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 5,
+          "defKey": "Sale_Count",
+          "defName": "促销数量",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 6,
+          "defKey": "Start_Date",
+          "defName": "起始日期",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 7,
+          "defKey": "Finish_Date",
+          "defName": "结束日期",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Sale_Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": [
+        {
+          "myField": "Branch_Number",
+          "refEntity": "Branch",
+          "refField": "Number",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        }
+      ]
+    },
+    {
+      "rowNo": 6,
+      "defKey": "UserData",
+      "defName": "用户信息",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Number",
+          "defName": "用户编号",
+          "comment": "",
+          "domain": "",
+          "type": "int",
+          "len": null,
+          "scale": null,
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Name",
+          "defName": "姓名",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Sex",
+          "defName": "性别",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Password",
+          "defName": "密码",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 5,
+          "defKey": "Telephone",
+          "defName": "手机号码",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 6,
+          "defKey": "Email",
+          "defName": "邮箱",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 7,
+          "defKey": "City",
+          "defName": "所在城市",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 8,
+          "defKey": "RegisterDate",
+          "defName": "注册时间",
+          "comment": "",
+          "domain": "",
+          "type": "date",
+          "len": null,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": [
+        {
+          "myField": "Number",
+          "refEntity": "Order",
+          "refField": "User_Number",
+          "myRows": "n",
+          "refRows": "n",
+          "innerType": ""
+        }
+      ]
+    },
+    {
+      "rowNo": 7,
+      "defKey": "Order",
+      "defName": "商品订单",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Order_Number",
+          "defName": "订单编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "User_Number",
+          "defName": "用户编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Hire_Branch",
+          "defName": "提车网点",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Return_Branch",
+          "defName": "还车网点",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 5,
+          "defKey": "Hire_Date",
+          "defName": "提车时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 6,
+          "defKey": "Return_Date",
+          "defName": "还车时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 7,
+          "defKey": "Hire_Time",
+          "defName": "租车时长",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 8,
+          "defKey": "Original_Price",
+          "defName": "原始金额",
+          "comment": "",
+          "domain": "Double",
+          "type": "DECIMAL",
+          "len": 24,
+          "scale": 6,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "float",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 9,
+          "defKey": "Final_Price",
+          "defName": "结算金额",
+          "comment": "",
+          "domain": "Double",
+          "type": "DECIMAL",
+          "len": 24,
+          "scale": 6,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "float",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 10,
+          "defKey": "Coupon_Number",
+          "defName": "优惠券编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 11,
+          "defKey": "Order_State",
+          "defName": "订单状态",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Order_Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": [
+        {
+          "myField": "Coupon_Number",
+          "refEntity": "Coupon",
+          "refField": "Number",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        },
+        {
+          "myField": "Return_Branch",
+          "refEntity": "Branch",
+          "refField": "Number",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        },
+        {
+          "myField": "Hire_Branch",
+          "refEntity": "Branch",
+          "refField": "Number",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        }
+      ]
+    },
+    {
+      "rowNo": 8,
+      "defKey": "Car_Scrap",
+      "defName": "车辆报废表",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Scrap_Number",
+          "defName": "报废编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Car_Number",
+          "defName": "车辆编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Staff_Number",
+          "defName": "操作员编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Scrap_Date",
+          "defName": "报废时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 5,
+          "defKey": "Information",
+          "defName": "说明",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(600)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Scrap_Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": [
+        {
+          "myField": "Operator_Number",
+          "refEntity": "Staff",
+          "refField": "Number",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        }
+      ]
+    },
+    {
+      "rowNo": 9,
+      "defKey": "Staff",
+      "defName": "员工信息表",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Number",
+          "defName": "员工编号",
+          "comment": "",
+          "domain": "",
+          "type": "int",
+          "len": null,
+          "scale": null,
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Name",
+          "defName": "员工姓名",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Password",
+          "defName": "登陆密码",
+          "comment": "",
+          "domain": "",
+          "type": "varchar",
+          "len": 60,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Branch",
+          "defName": "所属网点",
+          "comment": "",
+          "domain": "",
+          "type": "int",
+          "len": null,
+          "scale": null,
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": [
+        {
+          "myField": "Binary",
+          "refEntity": "Branch",
+          "refField": "Number",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        }
+      ]
+    },
+    {
+      "rowNo": 10,
+      "defKey": "Car_Informatin",
+      "defName": "车辆信息",
+      "comment": "",
+      "properties": {},
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Number",
+          "defName": "车辆编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Branch_Number",
+          "defName": "网点编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 3,
+          "defKey": "NumberPlate",
+          "defName": "车牌号",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Type",
+          "defName": "所属车型",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 5,
+          "defKey": "Branch",
+          "defName": "所在网点",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        },
+        {
+          "rowNo": 6,
+          "defKey": "State",
+          "defName": "当前状态",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": ""
+        }
+      ],
+      "indexes": [
+        {
+          "defKey": "Identifier_1",
+          "unique": false,
+          "defName": "Identifier_1",
+          "comment": "",
+          "fields": [
+            {
+              "ascOrDesc": null,
+              "fieldDefKey": "Number"
+            }
+          ]
+        }
+      ],
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "correlations": [
+        {
+          "myField": "Type",
+          "refEntity": "Car_Model",
+          "refField": "Number",
+          "myRows": "n",
+          "refRows": "1",
+          "innerType": ""
+        },
+        {
+          "myField": "Number",
+          "refEntity": "Car_Scrap",
+          "refField": "Car_Number",
+          "myRows": "1",
+          "refRows": "1",
+          "innerType": ""
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "defKey": "User",
+      "defName": "",
+      "comment": "",
+      "properties": {},
+      "nameTemplate": "{defKey}[{defName}]",
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "refEntity",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "hideInGraph": true
+        }
+      ],
+      "fields": [
+        {
+          "rowNo": 1,
+          "defKey": "Number",
+          "defName": "用户编号",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "int",
+          "primaryKeyName": "√",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": "",
+          "refEntity": "UserData",
+          "refEntityField": "Number"
+        },
+        {
+          "rowNo": 2,
+          "defKey": "Name",
+          "defName": "姓名",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": "",
+          "refEntity": "UserData",
+          "refEntityField": "Name"
+        },
+        {
+          "rowNo": 3,
+          "defKey": "Sex",
+          "defName": "性别",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": "",
+          "refEntity": "UserData",
+          "refEntityField": "Sex"
+        },
+        {
+          "rowNo": 4,
+          "defKey": "Password",
+          "defName": "密码",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": "",
+          "refEntity": "UserData",
+          "refEntityField": "Password"
+        },
+        {
+          "rowNo": 5,
+          "defKey": "Telephone",
+          "defName": "手机号码",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": "",
+          "refEntity": "UserData",
+          "refEntityField": "Telephone"
+        },
+        {
+          "rowNo": 6,
+          "defKey": "Email",
+          "defName": "邮箱",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": "",
+          "refEntity": "UserData",
+          "refEntityField": "Email"
+        },
+        {
+          "rowNo": 7,
+          "defKey": "City",
+          "defName": "所在城市",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "varchar(60)",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": "",
+          "refEntity": "UserData",
+          "refEntityField": "City"
+        },
+        {
+          "rowNo": 8,
+          "defKey": "RegisterDate",
+          "defName": "注册时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": null,
+          "notNull": null,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "typeFullName": "date",
+          "primaryKeyName": "",
+          "notNullName": "",
+          "autoIncrementName": "",
+          "refDict": "",
+          "refEntity": "UserData",
+          "refEntityField": "RegisterDate"
+        }
+      ],
+      "correlations": [],
+      "indexes": [],
+      "refEntities": [
+        "UserData"
+      ]
+    }
+  ],
+  "dicts": [],
+  "viewGroups": [],
+  "dataTypeMapping": {
+    "referURL": "",
+    "mappings": [
+      {
+        "defKey": "string",
+        "defName": "字串",
+        "JAVA": "String",
+        "ORACLE": "VARCHAR2",
+        "MYSQL": "VARCHAR",
+        "SQLServer": "VARCHAR",
+        "PostgreSQL": "VARCHAR",
+        "DB2": "VARCHAR",
+        "DM": "VARCHAR2",
+        "C#": "string"
+      },
+      {
+        "defKey": "double",
+        "defName": "小数",
+        "JAVA": "Double",
+        "ORACLE": "DECIMAL",
+        "MYSQL": "DECIMAL",
+        "SQLServer": "DECIMAL",
+        "PostgreSQL": "NUMERIC",
+        "DB2": "DECIMAL",
+        "DM": "DECIMAL",
+        "C#": "float"
+      },
+      {
+        "defKey": "int",
+        "defName": "整数",
+        "JAVA": "Integer",
+        "ORACLE": "INT",
+        "MYSQL": "INT",
+        "SQLServer": "INT",
+        "PostgreSQL": "INTEGER",
+        "DB2": "INT",
+        "DM": "INTEGER",
+        "C#": "float"
+      },
+      {
+        "defKey": "date",
+        "defName": "日期",
+        "JAVA": "Date",
+        "ORACLE": "DATE",
+        "MYSQL": "DATETIME",
+        "SQLServer": "DATETIME",
+        "PostgreSQL": "DATE",
+        "DB2": "DATE",
+        "DM": "DATE",
+        "C#": "date"
+      },
+      {
+        "defKey": "bytes",
+        "defName": "二进制",
+        "JAVA": "byte[]",
+        "ORACLE": "BLOB",
+        "MYSQL": "BLOB",
+        "PostgreSQL": "BYTEA",
+        "SQLServer": "VARBINARY",
+        "DB2": "BLOB",
+        "DM": "BLOB",
+        "C#": "binary"
+      },
+      {
+        "defKey": "largeText",
+        "defName": "大文本",
+        "JAVA": "String",
+        "ORACLE": "CLOB",
+        "MYSQL": "TEXT",
+        "SQLServer": "TEXT",
+        "PostgreSQL": "TEXT",
+        "DB2": "CLOB",
+        "DM": "CLOB",
+        "C#": "string"
+      }
+    ]
+  },
+  "domains": [
+    {
+      "defKey": "DefaultString",
+      "defName": "默认字串",
+      "applyFor": "string",
+      "len": "60",
+      "scale": "",
+      "uiHint": ""
+    },
+    {
+      "defKey": "IdOrKey",
+      "defName": "主键标识",
+      "applyFor": "string",
+      "len": 32,
+      "scale": "",
+      "uiHint": ""
+    },
+    {
+      "defKey": "Name",
+      "defName": "名称",
+      "applyFor": "string",
+      "len": 90,
+      "scale": "",
+      "uiHint": ""
+    },
+    {
+      "defKey": "Int",
+      "defName": "整数",
+      "applyFor": "int",
+      "len": "",
+      "scale": "",
+      "uiHint": ""
+    },
+    {
+      "defKey": "Double",
+      "defName": "小数",
+      "applyFor": "double",
+      "len": 24,
+      "scale": 6,
+      "uiHint": ""
+    },
+    {
+      "defKey": "Money",
+      "defName": "金额",
+      "applyFor": "double",
+      "len": 24,
+      "scale": 6,
+      "uiHint": ""
+    },
+    {
+      "defKey": "DateTime",
+      "defName": "日期时间",
+      "applyFor": "date",
+      "len": "",
+      "scale": "",
+      "uiHint": ""
+    },
+    {
+      "defKey": "YesNo",
+      "defName": "是否",
+      "applyFor": "string",
+      "len": "1",
+      "scale": "",
+      "uiHint": ""
+    },
+    {
+      "defKey": "Dict",
+      "defName": "数据字典",
+      "applyFor": "string",
+      "len": "32",
+      "scale": "",
+      "uiHint": ""
+    },
+    {
+      "defKey": "DescText",
+      "defName": "描述文本",
+      "applyFor": "string",
+      "len": "900",
+      "scale": "",
+      "uiHint": ""
+    }
+  ],
+  "diagrams": [
+    {
+      "defKey": "request",
+      "defName": "",
+      "canvasData": {
+        "cells": [
+          {
+            "id": "121a2621-4009-4e71-8037-e871391c172e",
+            "shape": "table",
+            "position": {
+              "x": 390,
+              "y": -30
+            },
+            "count": 0,
+            "originKey": "Car_Scrap"
+          },
+          {
+            "id": "033c5225-353c-41ab-aa3d-2e3eaa6f9d79",
+            "shape": "table",
+            "position": {
+              "x": 1060,
+              "y": 790
+            },
+            "count": 0,
+            "originKey": "Coupon"
+          },
+          {
+            "id": "d35c26df-7dc2-4f0f-a733-c699f0633646",
+            "shape": "table",
+            "position": {
+              "x": 1024,
+              "y": 415
+            },
+            "count": 0,
+            "originKey": "UserData"
+          },
+          {
+            "id": "f652d55d-e9ae-4c38-a5e8-77b6856f15c3",
+            "shape": "table",
+            "position": {
+              "x": 463,
+              "y": 295
+            },
+            "count": 0,
+            "originKey": "Car_Model"
+          },
+          {
+            "id": "90379fae-8813-448c-b05a-133419e8762e",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "f652d55d-e9ae-4c38-a5e8-77b6856f15c3",
+              "port": "Number%out"
+            },
+            "target": {
+              "cell": "ebe3773f-e7cc-4440-abe6-0519d1fbf4c8",
+              "port": "Type%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "e669901a-1760-4237-8226-3798272a1347",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "12ca1b08-90da-4442-97dd-f9b3782d9b67",
+              "port": "Car_Model%out"
+            },
+            "target": {
+              "cell": "f652d55d-e9ae-4c38-a5e8-77b6856f15c3",
+              "port": "Number%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "1fdad9fe-2b69-4a2b-9956-56e89f92e86f",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "51882a96-89f8-491c-8261-2d5cc4682d56",
+              "port": "Number%in"
+            },
+            "target": {
+              "cell": "12ca1b08-90da-4442-97dd-f9b3782d9b67",
+              "port": "Branch_Number%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "d5af671f-b27b-4df5-9b05-2ff2f6ab25d9",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "e97fea62-26ed-4d3c-accc-be24d713f6a0",
+              "port": "Number%out"
+            },
+            "target": {
+              "cell": "121a2621-4009-4e71-8037-e871391c172e",
+              "port": "Operator_Number%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "66186a6c-6b92-42d7-85ca-b3fbedb25f57",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "121a2621-4009-4e71-8037-e871391c172e",
+              "port": "Car_Number%out"
+            },
+            "target": {
+              "cell": "ebe3773f-e7cc-4440-abe6-0519d1fbf4c8",
+              "port": "Number%in"
+            },
+            "relation": "1:1",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "504c045c-21d7-4b64-91dc-c97a6ab392f7",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "d35c26df-7dc2-4f0f-a733-c699f0633646",
+              "port": "Number%in"
+            },
+            "target": {
+              "cell": "d972b69f-5276-4058-a4fa-5a930db2780b",
+              "port": "User_Number%out"
+            },
+            "relation": "n:n",
+            "vertices": [
+              {
+                "x": 910,
+                "y": 455
+              }
+            ],
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "0e1d5a3f-86a6-4897-92ea-0283b38e101e",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "d972b69f-5276-4058-a4fa-5a930db2780b",
+              "port": "Coupon_Number%out"
+            },
+            "target": {
+              "cell": "033c5225-353c-41ab-aa3d-2e3eaa6f9d79",
+              "port": "Number%in"
+            },
+            "relation": "n:1",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "ec16dfce-40fa-4e5e-82f2-75fb19f800ee",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "d972b69f-5276-4058-a4fa-5a930db2780b",
+              "port": "Return_Branch%in"
+            },
+            "target": {
+              "cell": "51882a96-89f8-491c-8261-2d5cc4682d56",
+              "port": "Number%out"
+            },
+            "relation": "n:1",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "c81e0ab9-680e-431a-a7a4-ddb0149168df",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "d972b69f-5276-4058-a4fa-5a930db2780b",
+              "port": "Hire_Branch%in"
+            },
+            "target": {
+              "cell": "51882a96-89f8-491c-8261-2d5cc4682d56",
+              "port": "Number%out"
+            },
+            "relation": "n:1",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "04d9c967-6d8c-41d3-b8ee-f1595d28c415",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "7da154e8-8133-4049-86e3-3031d4460a72",
+              "port": "Number%out"
+            },
+            "target": {
+              "cell": "f652d55d-e9ae-4c38-a5e8-77b6856f15c3",
+              "port": "Type%in"
+            },
+            "relation": "1:n",
+            "fillColor": "#ACDAFC"
+          },
+          {
+            "id": "ebe3773f-e7cc-4440-abe6-0519d1fbf4c8",
+            "shape": "table",
+            "position": {
+              "x": 896,
+              "y": 91
+            },
+            "count": 0,
+            "originKey": "Car_Informatin"
+          },
+          {
+            "id": "d972b69f-5276-4058-a4fa-5a930db2780b",
+            "shape": "table",
+            "position": {
+              "x": 550,
+              "y": 580
+            },
+            "count": 0,
+            "originKey": "Order"
+          },
+          {
+            "id": "b9c2df2b-19a0-40d5-99c9-085c40b2679b",
+            "shape": "erdRelation",
+            "source": {
+              "cell": "e97fea62-26ed-4d3c-accc-be24d713f6a0",
+              "port": "Binary%in"
+            },
+            "target": {
+              "cell": "51882a96-89f8-491c-8261-2d5cc4682d56",
+              "port": "Number%in"
+            },
+            "relation": "n:1",
+            "fillColor": "#ACDAFC",
+            "router": {
+              "name": "manhattan"
+            }
+          },
+          {
+            "id": "51882a96-89f8-491c-8261-2d5cc4682d56",
+            "shape": "table",
+            "position": {
+              "x": -50,
+              "y": 740
+            },
+            "count": 0,
+            "originKey": "Branch"
+          },
+          {
+            "id": "7da154e8-8133-4049-86e3-3031d4460a72",
+            "shape": "table",
+            "position": {
+              "x": 47,
+              "y": 480
+            },
+            "count": 0,
+            "originKey": "Car_Type"
+          },
+          {
+            "id": "12ca1b08-90da-4442-97dd-f9b3782d9b67",
+            "shape": "table",
+            "position": {
+              "x": 53.5,
+              "y": 250
+            },
+            "count": 0,
+            "originKey": "FlashSale"
+          },
+          {
+            "id": "e97fea62-26ed-4d3c-accc-be24d713f6a0",
+            "shape": "table",
+            "position": {
+              "x": -180,
+              "y": 10
+            },
+            "count": 0,
+            "originKey": "Staff"
+          }
+        ]
+      }
+    }
+  ],
+  "dbConn": [
+    {
+      "defKey": "7C8A4E53-3F11-46F2-A592-137DCBE0B421",
+      "defName": "127.0.0.1:3306",
+      "type": "MYSQL",
+      "properties": {
+        "driver_class_name": "com.mysql.cj.jdbc.Driver",
+        "url": "jdbc:mysql://127.0.0.1:3306/Car?characterEncoding=UTF-8&useSSL=false&useUnicode=true&serverTimezone=UTC",
+        "password": "swjh2000",
+        "username": "root",
+        "customer_driver": ""
+      }
+    }
+  ]
+}
