@@ -3,22 +3,17 @@ JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:51:p, par l {seq {comp register:::p::p, space s:::p, comp stfLogin:::p::p, space s:::p, comp userLogin:::p::p, space ::50:x}, seq {par l {comp label2:::p:119:p, comp label3:::::x}, space s:::p, par l:::p {comp ID::::285:x, comp Pwd::::285:x}, space ::62:x}}}, comp label1::l::535:x}"
-			"$verticalGroup": "par l {seq l {space :p:17:p, comp label1:::p:47:p, space s:::p, par l:::p {comp ID:::::x, comp label2:::::x}, space s:::p, par l {comp label3:::p:49:p, comp Pwd:::::x}, space :p:28:p, par l {comp register:::p::p, comp stfLogin:::p::p, comp userLogin:::p::p}, space ::63:x}}"
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, par l {comp label1:::p:535:p, seq l {space :51:51:p, par l {seq l {comp label2:::p:119:p, space :18:18:p, comp ID:::p:285:p}, seq l {comp label3:::p:119:p, space :18:18:p, comp Pwd:::p:285:p}, seq l {comp register:::p::p, space :18:18:p, comp stfLogin:::p::p, space s:::p, comp userLogin:::p::p}}}}, space :::x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:47:p, space :18:18:p, par l {comp label2:::p:49:p, comp ID:::p::p}, space :18:18:p, par l {comp label3:::p:49:p, comp Pwd:::p::p}, space :28:28:p, par l {comp register:::p::p, par b {comp stfLogin::b:p::p, comp userLogin::b:p::p}}, space ::40:x}}"
 		} ) {
 			name: "登陆"
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "欢迎来到租车管理系统"
-				"horizontalAlignment": 0
+				name: "label2"
+				"text": "用户编号:"
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "ID"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "用户编号:"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
@@ -31,18 +26,26 @@ new FormModel {
 				name: "register"
 				"text": "注册"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "registerActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "stfLogin"
 				"text": "员工登陆"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "stfLoginActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "userLogin"
 				"text": "用户登陆"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "userLoginActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "欢迎来到租车管理系统"
+				"horizontalAlignment": 0
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 535, 335 )
+			"size": new java.awt.Dimension( 545, 345 )
 		} )
 	}
 }
