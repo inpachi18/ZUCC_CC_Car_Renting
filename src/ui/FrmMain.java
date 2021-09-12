@@ -39,53 +39,74 @@ public class FrmMain extends JFrame {
     }
 
 
-
-
     // 用户个人信息管理
     private void menuItem53ActionPerformed() {
-        UserInfo info=new UserInfo(this,"个人信息",true);
+        UserInfo info = new UserInfo(this, "个人信息", true);
         info.setVisible(true);
     }
+
     private void menuItem2ActionPerformed() {
-        ChangeUserPassword CUP=new ChangeUserPassword(this,"修改密码",true);
+        ChangeUserPassword CUP = new ChangeUserPassword(this, "修改密码", true);
         CUP.setVisible(true);
     }
+
     private void menuItem3ActionPerformed() {
-        ChangeUserInfo CUI=new ChangeUserInfo(this,"修改个人信息",true);
+        ChangeUserInfo CUI = new ChangeUserInfo(this, "修改个人信息", true);
         CUI.setVisible(true);
     }
 
     //员工自行修改密码
     private void menuItem10ActionPerformed() {
-        ChangeStaffPassWord CSP=new ChangeStaffPassWord(this,"修改密码",true);
+        ChangeStaffPassWord CSP = new ChangeStaffPassWord(this, "修改密码", true);
         CSP.setVisible(true);
     }
 
     //管理员管理用户信息
     //直接添加用户
     private void menuItem26ActionPerformed(ActionEvent e) {
-        AdminUserAdd AUA=new AdminUserAdd(this,"添加用户",true);
+        AdminUserAdd AUA = new AdminUserAdd(this, "添加用户", true);
         AUA.setVisible(true);
     }
+
     //查看用户列表
     private void menuItem29ActionPerformed() {
         // TODO add your code here
     }
+
     //查看用户信息
     private void menuItem23ActionPerformed() {
-        AdminUserInfo AUI=new AdminUserInfo(this,"查询用户信息",true);
+        AdminUserInfo AUI = new AdminUserInfo(this, "查询用户信息", true);
         AUI.setVisible(true);
     }
+
     //修改信息
     private void menuItem24ActionPerformed() {
-        AdminChangeUserInfo ACUI = new AdminChangeUserInfo(this,"修改用户信息",true);
+        AdminChangeUserInfo ACUI = new AdminChangeUserInfo(this, "修改用户信息", true);
         ACUI.setVisible(true);
     }
+
     //删除用户
     private void menuItem25ActionPerformed() {
-        // TODO add your code here
+        UserDelete UD = new UserDelete(this, "删除用户", true);
+        UD.setVisible(true);
     }
 
+
+    //管理员管理员工信息
+    //新增员工
+    private void menuItem27ActionPerformed() {
+        AdminStfAdd ASA = new AdminStfAdd(this, "新增员工", true);
+        ASA.setVisible(true);
+    }
+    //查询员工信息
+    private void menuItem28ActionPerformed() {
+        AdminStfInfo ASI=new AdminStfInfo(this,"查询员工信息",true);
+        ASI.setVisible(true);
+    }
+    //修改员工信息
+    private void menuItem31ActionPerformed() {
+        // TODO add your code here
+    }
 
 
     private void initComponents() {
@@ -337,6 +358,7 @@ public class FrmMain extends JFrame {
 
                         //---- menuItem27 ----
                         menuItem27.setText("\u65b0\u589e\u5458\u5de5");
+                        menuItem27.addActionListener(e -> menuItem27ActionPerformed());
                         menu13.add(menuItem27);
 
                         //---- menuItem30 ----
@@ -345,10 +367,12 @@ public class FrmMain extends JFrame {
 
                         //---- menuItem28 ----
                         menuItem28.setText("\u5458\u5de5\u4fe1\u606f\u67e5\u8be2");
+                        menuItem28.addActionListener(e -> menuItem28ActionPerformed());
                         menu13.add(menuItem28);
 
                         //---- menuItem31 ----
                         menuItem31.setText("\u5458\u5de5\u4fe1\u606f\u4fee\u6539");
+                        menuItem31.addActionListener(e -> menuItem31ActionPerformed());
                         menu13.add(menuItem31);
 
                         //---- menuItem32 ----

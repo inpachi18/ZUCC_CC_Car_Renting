@@ -1,0 +1,40 @@
+JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:50:p, par l {comp label1::l:p::p, comp label2::l:p::p}, space :p:54:p, par l:::p {comp name::::230:x, comp branch::::230:x}}, seq l {space :p:96:p, comp quit:::p::p, space :45:45:p, comp search:::p::p}}, space ::55:x}}"
+			"$verticalGroup": "par l {seq l {space :p:34:p, par l {comp label1:::p::p, comp name:::p::p}, space :p:28:p, par l {comp label2:::p::p, comp branch:::p::p}, space ::37:x, par l {comp quit:::p::p, comp search:::p::p}, space :p:54:p}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "用户名："
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "name"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "所属网点编号"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "branch"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "quit"
+				"text": "离开"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "quitActionPerformed", false ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "search"
+				"text": "查询"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "searchActionPerformed", false ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 525, 325 )
+		} )
+	}
+}

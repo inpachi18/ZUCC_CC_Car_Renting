@@ -163,6 +163,28 @@ public class UserManager {
 
     }
 
+    public void DelUser(String name) throws BaseException {
+        Connection conn = null;
+        try {
+            conn = DBUtil.getConnection();
+            String sql = "delete from UserData where user_id='"+name+"'";
+            java.sql.Statement st = conn.createStatement();
+            st.execute(sql);
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DbException(e);
+        } finally {
+            if (conn != null)
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+        }
+    }
+
     public void ChangeInfo(String name, String sex, String tel, String email, String city) throws BaseException {
         Connection conn = null;
         try {
@@ -204,7 +226,7 @@ public class UserManager {
             pst.setString(1, name);
             java.sql.ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                if(rs.getString(2)==null || "".equals(rs.getString(2)))
+                if (rs.getString(2) == null || "".equals(rs.getString(2)))
                     throw new BusinessException("请输入正确的用户名！");
                 BeanUser p = new BeanUser();
                 p.setNumber(rs.getInt(1));

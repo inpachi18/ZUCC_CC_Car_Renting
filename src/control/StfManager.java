@@ -17,8 +17,6 @@ public class StfManager {
 
     public void AddStf(String name, String pwd, int branch) throws BaseException {
         int flag = 0;
-        if (StfManager.currentStf.getBranch() != 0)
-            throw new BusinessException("需要管理员权限");
         Connection conn = null;
         if ("".equals(name) || name == null) {
             throw new BusinessException("员工名不可为空");
@@ -143,9 +141,8 @@ public class StfManager {
     }
 
 
-
     public void changePwd(String name, String oldPwd, String newPwd, String newPwd2) throws BaseException {
-        if (oldPwd == null && StfManager.currentStf.getBranch()!=0)
+        if (oldPwd == null && StfManager.currentStf.getBranch() != 0)
             throw new BusinessException("密码错误");
         Connection conn = null;
         try {
@@ -156,7 +153,7 @@ public class StfManager {
             java.sql.ResultSet rs = pst.executeQuery();
             if (!rs.next())
                 throw new BusinessException("请输入正确的员工名");
-            if (!oldPwd.equals(rs.getString(1)) && StfManager.currentStf.getBranch()!=0)
+            if (!oldPwd.equals(rs.getString(1)) && StfManager.currentStf.getBranch() != 0)
                 throw new BusinessException("原密码错误");
             if (!newPwd.equals(newPwd2))
                 throw new BusinessException("两次输入不一致");
@@ -182,28 +179,16 @@ public class StfManager {
 
     }
 
-    public void ChangeBranch(String name, String pwd, int branch) throws BaseException {
-        if (StfManager.currentStf.getBranch() != 0)
-            throw new BusinessException("需要管理员权限");
-        Connection conn = null;
+    public void ChangeInfo(String name, Integer branch) throws BaseException {
+        Connection conn=null;
         try {
             conn = DBUtil.getConnection();
-            String sql = "select Password from Staff where Name = ?";
-            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, name);
-            java.sql.ResultSet rs = pst.executeQuery();
-            if (!rs.next())
-                throw new BusinessException("请输入正确的用户名");
-            if (!pwd.equals(rs.getString(1)))
-                throw new BusinessException("请输入正确的密码");
-            rs.close();
-            pst.close();
-            if ("".equals(branch))
-                throw new BusinessException("请输入正确的网点编号，0为管理员");
-            sql = "update Staff set Branch = ? where Name=?";
-            pst = conn.prepareStatement(sql);
-            pst.setInt(1, branch);
-            pst.setString(2, name);
+            BeanStaff o=this.SearchInfo(name);
+            if (branch==-1) branch = o.getBranch();
+            String sql = "update Staff set Branch=? where name=?";
+            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            pst.setInt(1,branch);
+            pst.setString(2,name);
             pst.execute();
             pst.close();
         } catch (SQLException e) {
@@ -213,10 +198,43 @@ public class StfManager {
             if (conn != null)
                 try {
                     conn.close();
-                } catch (Exception e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
+    }
+
+    public static BeanStaff SearchInfo(String name) throws BaseException {
+        Connection conn = null;
+        BeanStaff result = new BeanStaff();
+        try {
+            conn = DBUtil.getConnection();
+            String sql = "select * from Staff where Name=?";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, name);
+            java.sql.ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                if (rs.getString(2) == null || "".equals(rs.getString(2)))
+                    throw new BusinessException("请输入正确的用户名！");
+                BeanStaff p = new BeanStaff();
+                p.setNumber(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setPassword(rs.getString(3));
+                p.setBranch(rs.getInt(4));
+                result = p;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DbException(e);
+        } finally {
+            if (conn != null)
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+        }
+        return result;
     }
 
     public void DeleteStf(BeanStaff g) throws BaseException {

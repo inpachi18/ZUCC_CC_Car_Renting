@@ -163,6 +163,7 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem27"
 								"text": "新增员工"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem27ActionPerformed", false ) )
 							} )
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem30"
@@ -171,10 +172,12 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem28"
 								"text": "员工信息查询"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem28ActionPerformed", false ) )
 							} )
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem31"
 								"text": "员工信息修改"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem31ActionPerformed", false ) )
 							} )
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem32"
