@@ -4,6 +4,10 @@
 
 package ui;
 
+import control.StfManager;
+import control.UserManager;
+import model.BeanUser;
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -13,9 +17,24 @@ import javax.swing.GroupLayout;
  */
 public class FrmMain extends JFrame {
     public FrmMain() {
-        initComponents();
         FrmLogin dlgLogin = new FrmLogin(this, "登陆", true);
         dlgLogin.setVisible(true);
+        initComponents();
+
+        this.setVisible(true);
+        this.menu1.setVisible(false);
+        this.menu2.setVisible(false);
+        this.menu3.setVisible(false);
+
+        if (UserManager.currentUser != null) {
+            this.menu1.setVisible(true);
+        }
+        if (StfManager.currentStf != null) {
+            this.menu2.setVisible(true);
+        }
+        if (StfManager.currentStf.getBranch() == 0) {
+            this.menu3.setVisible(true);
+        }
     }
 
     private void menuItem26ActionPerformed(ActionEvent e) {
@@ -424,12 +443,12 @@ public class FrmMain extends JFrame {
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGap(0, 1741, Short.MAX_VALUE)
+                contentPaneLayout.createParallelGroup()
+                        .addGap(0, 1741, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGap(0, 1050, Short.MAX_VALUE)
+                contentPaneLayout.createParallelGroup()
+                        .addGap(0, 1050, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());

@@ -114,7 +114,7 @@ public class StfManager {
         BeanStaff g = new BeanStaff();
         try {
             conn = DBUtil.getConnection();
-            String sql = "select Password,Number from Staff where Name=?";
+            String sql = "select Password,Number,Branch from Staff where Name=?";
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, name);
             java.sql.ResultSet rs = pst.executeQuery();
@@ -125,6 +125,7 @@ public class StfManager {
             g.setNumber(rs.getInt(2));
             g.setName(name);
             g.setPassword(pwd);
+            g.setBranch(rs.getInt(3));
             rs.close();
             pst.close();
             return g;

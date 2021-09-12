@@ -158,6 +158,41 @@ public class UserManager {
 
     }
 
+    public BeanUser SearchInfo(String name) throws BaseException {
+        Connection conn=null;
+        BeanUser result = new BeanUser();
+        try {
+            conn=DBUtil.getConnection();
+            String sql="select * from UserData where Name=?";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            java.sql.ResultSet rs=pst.executeQuery();
+            pst.setString(1,name);
+            while (rs.next()) {
+                BeanUser p = new BeanUser();
+                p.setNumber(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setSex(rs.getString(3));
+                p.setPassword(rs.getString(4));
+                p.setTelephone(rs.getString(5));
+                p.setEmail(rs.getString(6));
+                p.setCity(rs.getString(7));
+                p.setRegisterdate(rs.getDate(8));
+                result = p;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DbException(e);
+        } finally {
+            if (conn!=null)
+                try {
+                    conn.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+        }
+        return result;
+    }
+
     //列出用户列表
     public List<BeanUser> loadAll() throws BaseException {
         List<BeanUser> result = new ArrayList<BeanUser>();
