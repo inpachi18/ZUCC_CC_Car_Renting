@@ -142,8 +142,10 @@ public class StfManager {
         }
     }
 
+
+
     public void changePwd(String name, String oldPwd, String newPwd, String newPwd2) throws BaseException {
-        if (oldPwd == null)
+        if (oldPwd == null && StfManager.currentStf.getBranch()!=0)
             throw new BusinessException("密码错误");
         Connection conn = null;
         try {
@@ -154,7 +156,7 @@ public class StfManager {
             java.sql.ResultSet rs = pst.executeQuery();
             if (!rs.next())
                 throw new BusinessException("请输入正确的员工名");
-            if (!oldPwd.equals(rs.getString(1)))
+            if (!oldPwd.equals(rs.getString(1)) && StfManager.currentStf.getBranch()!=0)
                 throw new BusinessException("原密码错误");
             if (!newPwd.equals(newPwd2))
                 throw new BusinessException("两次输入不一致");

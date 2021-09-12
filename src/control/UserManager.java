@@ -158,15 +158,44 @@ public class UserManager {
 
     }
 
+    public void ChangeInfo(String name, String tel, String email, String city) throws BaseException {
+        Connection conn = null;
+        try {
+            conn = DBUtil.getConnection();
+            BeanUser o = this.SearchInfo(name);
+            if (tel == null) tel = o.getSex();
+            if (email == null) email = o.getEmail();
+            if (city == null) city = o.getCity();
+            String sql="update UserData set Telephone=?,Email=?,City=? where Name=?";
+            java.sql.PreparedStatement pst= conn.prepareStatement(sql);
+            pst.setString(1,tel);
+            pst.setString(2,email);
+            pst.setString(3,city);
+            pst.setString(4,name);
+            pst.execute();
+            pst.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DbException(e);
+        } finally {
+            if(conn!=null)
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+        }
+    }
+
     public BeanUser SearchInfo(String name) throws BaseException {
-        Connection conn=null;
+        Connection conn = null;
         BeanUser result = new BeanUser();
         try {
-            conn=DBUtil.getConnection();
-            String sql="select * from UserData where Name=?";
+            conn = DBUtil.getConnection();
+            String sql = "select * from UserData where Name=?";
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-            java.sql.ResultSet rs=pst.executeQuery();
-            pst.setString(1,name);
+            java.sql.ResultSet rs = pst.executeQuery();
+            pst.setString(1, name);
             while (rs.next()) {
                 BeanUser p = new BeanUser();
                 p.setNumber(rs.getInt(1));
@@ -183,10 +212,10 @@ public class UserManager {
             e.printStackTrace();
             throw new DbException(e);
         } finally {
-            if (conn!=null)
+            if (conn != null)
                 try {
                     conn.close();
-                } catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
