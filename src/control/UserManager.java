@@ -92,7 +92,7 @@ public class UserManager {
         BeanUser g = new BeanUser();
         try {
             conn = DBUtil.getConnection();
-            String sql = "select Password,Number from UserData where Name=?";
+            String sql = "select Password,Number,Sex,Telephone,Email,City,RegisterDate from UserData where Name=?";
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, name);
             java.sql.ResultSet rs = pst.executeQuery();
@@ -103,6 +103,11 @@ public class UserManager {
             g.setNumber(rs.getInt(2));
             g.setName(name);
             g.setPassword(pwd);
+            g.setSex(rs.getString(3));
+            g.setTelephone(rs.getString(4));
+            g.setEmail(rs.getString(5));
+            g.setCity(rs.getString(6));
+            g.setRegisterdate(rs.getDate(7));
             rs.close();
             pst.close();
             return g;
@@ -187,7 +192,7 @@ public class UserManager {
         }
     }
 
-    public BeanUser SearchInfo(String name) throws BaseException {
+    public static BeanUser SearchInfo(String name) throws BaseException {
         Connection conn = null;
         BeanUser result = new BeanUser();
         try {

@@ -31,14 +31,33 @@ public class FrmMain extends JFrame {
         }
         if (StfManager.currentStf != null) {
             this.menu2.setVisible(true);
+            if (StfManager.currentStf.getBranch() == 0) {
+                this.menu3.setVisible(true);
+            }
         }
-        if (StfManager.currentStf.getBranch() == 0) {
-            this.menu3.setVisible(true);
-        }
+
+
     }
 
     private void menuItem26ActionPerformed(ActionEvent e) {
         // TODO add your code here
+    }
+
+
+    // 用户个人信息管理
+    private void menuItem53ActionPerformed() {
+        UserInfo info=new UserInfo(this,"个人信息",true);
+        info.setVisible(true);
+    }
+
+    private void menuItem2ActionPerformed() {
+        ChangeUserPassword CUP=new ChangeUserPassword(this,"修改密码",true);
+        CUP.setVisible(true);
+    }
+
+    private void menuItem3ActionPerformed() {
+        ChangeUserInfo CUI=new ChangeUserInfo(this,"修改个人信息",true);
+        CUI.setVisible(true);
     }
 
     private void initComponents() {
@@ -59,7 +78,6 @@ public class FrmMain extends JFrame {
         menu2 = new JMenu();
         menu6 = new JMenu();
         menuItem10 = new JMenuItem();
-        menuItem11 = new JMenuItem();
         menu7 = new JMenu();
         menuItem12 = new JMenuItem();
         menuItem13 = new JMenuItem();
@@ -72,9 +90,6 @@ public class FrmMain extends JFrame {
         menu9 = new JMenu();
         menuItem19 = new JMenuItem();
         menuItem20 = new JMenuItem();
-        menu10 = new JMenu();
-        menuItem21 = new JMenuItem();
-        menuItem22 = new JMenuItem();
         menu3 = new JMenu();
         menu11 = new JMenu();
         menu12 = new JMenu();
@@ -131,14 +146,17 @@ public class FrmMain extends JFrame {
 
                     //---- menuItem53 ----
                     menuItem53.setText("\u67e5\u770b\u4e2a\u4eba\u4fe1\u606f");
+                    menuItem53.addActionListener(e -> menuItem53ActionPerformed());
                     menu4.add(menuItem53);
 
                     //---- menuItem2 ----
                     menuItem2.setText("\u4fee\u6539\u5bc6\u7801");
+                    menuItem2.addActionListener(e -> menuItem2ActionPerformed());
                     menu4.add(menuItem2);
 
                     //---- menuItem3 ----
                     menuItem3.setText("\u4fee\u6539\u4e2a\u4eba\u4fe1\u606f");
+                    menuItem3.addActionListener(e -> menuItem3ActionPerformed());
                     menu4.add(menuItem3);
                 }
                 menu1.add(menu4);
@@ -186,10 +204,6 @@ public class FrmMain extends JFrame {
                     //---- menuItem10 ----
                     menuItem10.setText("\u4fee\u6539\u5bc6\u7801");
                     menu6.add(menuItem10);
-
-                    //---- menuItem11 ----
-                    menuItem11.setText("\u4fee\u6539\u4e2a\u4eba\u4fe1\u606f");
-                    menu6.add(menuItem11);
                 }
                 menu2.add(menu6);
 
@@ -246,20 +260,6 @@ public class FrmMain extends JFrame {
                     menu9.add(menuItem20);
                 }
                 menu2.add(menu9);
-
-                //======== menu10 ========
-                {
-                    menu10.setText("\u4fc3\u9500\u7ba1\u7406");
-
-                    //---- menuItem21 ----
-                    menuItem21.setText("\u4fc3\u9500\u521b\u5efa");
-                    menu10.add(menuItem21);
-
-                    //---- menuItem22 ----
-                    menuItem22.setText("\u4fc3\u9500\u7ba1\u7406");
-                    menu10.add(menuItem22);
-                }
-                menu2.add(menu10);
             }
             menuBar1.add(menu2);
 
@@ -443,12 +443,12 @@ public class FrmMain extends JFrame {
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-                contentPaneLayout.createParallelGroup()
-                        .addGap(0, 1741, Short.MAX_VALUE)
+            contentPaneLayout.createParallelGroup()
+                .addGap(0, 1741, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
-                contentPaneLayout.createParallelGroup()
-                        .addGap(0, 1050, Short.MAX_VALUE)
+            contentPaneLayout.createParallelGroup()
+                .addGap(0, 1050, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -472,7 +472,6 @@ public class FrmMain extends JFrame {
     private JMenu menu2;
     private JMenu menu6;
     private JMenuItem menuItem10;
-    private JMenuItem menuItem11;
     private JMenu menu7;
     private JMenuItem menuItem12;
     private JMenuItem menuItem13;
@@ -485,9 +484,6 @@ public class FrmMain extends JFrame {
     private JMenu menu9;
     private JMenuItem menuItem19;
     private JMenuItem menuItem20;
-    private JMenu menu10;
-    private JMenuItem menuItem21;
-    private JMenuItem menuItem22;
     private JMenu menu3;
     private JMenu menu11;
     private JMenu menu12;

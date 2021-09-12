@@ -1,0 +1,50 @@
+JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::63:x, par l {seq l {comp label7:::p:98:p, space :18:18:p, comp UsrTel:::p:282:p}, seq l {comp label8:::p:98:p, space :18:18:p, comp UsrMail:::p:282:p}, seq l {comp label1:::p::p, space :p:50:p, comp name:::p::p}, seq l {comp label9:::p:98:p, space :18:18:p, par l {comp button1:::p::p, comp UsrCity:::p:282:p}}}, space :p:60:p}}"
+			"$verticalGroup": "par l {seq l {space :p:32:p, par b {comp label1::b:p::p, comp name::b:p::p}, space u:::p, par l {seq l {space :4:4:p, comp label7:::p:41:p}, comp UsrTel:::p::p}, space :12:12:p, par l {comp label8:::p:49:p, comp UsrMail:::p::p}, space :12:12:p, par l {comp label9:::p:49:p, comp UsrCity:::p::p}, space :p:26:p, comp button1:::p::p, space ::56:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "UsrTel"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "手机号码"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "邮箱"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "UsrMail"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "UsrCity"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "所在城市"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "用户名"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "name"
+				"text": "text"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "确认"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", false ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 525, 420 )
+		} )
+	}
+}
