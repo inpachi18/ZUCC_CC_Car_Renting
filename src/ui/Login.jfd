@@ -3,49 +3,48 @@ JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, par l {comp label1:::p:535:p, seq l {space :51:51:p, par l {seq l {comp label2:::p:119:p, space :18:18:p, comp ID:::p:285:p}, seq l {comp label3:::p:119:p, space :18:18:p, comp Pwd:::p:285:p}, seq l {comp register:::p::p, space :18:18:p, comp stfLogin:::p::p, space s:::p, comp userLogin:::p::p}}}}, space :::x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:47:p, space :18:18:p, par l {comp label2:::p:49:p, comp ID:::p::p}, space :18:18:p, par l {comp label3:::p:49:p, comp Pwd:::p::p}, space :28:28:p, par l {comp register:::p::p, par b {comp stfLogin::b:p::p, comp userLogin::b:p::p}}, space ::40:x}}"
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp label1:::::x}, seq {par l {seq l {space :p:38:p, comp btnreg:::p::p, space u:::p, comp btnstf:::p::p, space u:::p, comp btnuser:::p::p}, seq l {space :p:51:p, par l {seq l {comp label4:::p:98:p, space :18:18:p, comp textField1:::p:282:p}, seq l {comp label5:::p:98:p, space :18:18:p, comp passwordField1:::p:282:p}}}}, space :0:40:x}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:23:p, comp label1:::p:55:p, space :p:30:p, par l {seq l {space :8:8:p, comp label4:::p:41:p}, comp textField1:::p::p}, space :12:12:p, par l {comp label5:::p:49:p, comp passwordField1:::p::p}, space :p:46:p, par b {comp btnreg::b:p::p, comp btnstf::b:p::p, comp btnuser::b:p::p}, space ::66:x}}"
 		} ) {
-			name: "登陆"
+			name: "this"
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField1"
+			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "用户编号:"
+				name: "label5"
+				"text": "密码"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "用户名"
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "ID"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label3"
-				"text": "密码："
-			} )
-			add( new FormComponent( "javax.swing.JPasswordField" ) {
-				name: "Pwd"
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "register"
-				"text": "注册"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "registerActionPerformed", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "stfLogin"
-				"text": "员工登陆"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "stfLoginActionPerformed", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "userLogin"
-				"text": "用户登陆"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "userLoginActionPerformed", true ) )
+				name: "textField1"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "欢迎来到租车管理系统"
 				"horizontalAlignment": 0
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnreg"
+				"text": "注册"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnregActionPerformed", false ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnstf"
+				"text": "员工登陆"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnstfActionPerformed", false ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnuser"
+				"text": "用户登陆"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnuserActionPerformed", false ) )
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 545, 345 )
+			"size": new java.awt.Dimension( 510, 420 )
 		} )
 	}
 }
