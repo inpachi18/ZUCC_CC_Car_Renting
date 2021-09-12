@@ -4,6 +4,7 @@
 
 package ui;
 
+import control.CarScrapManager;
 import control.StfManager;
 import control.UserManager;
 
@@ -98,19 +99,49 @@ public class FrmMain extends JFrame {
         AdminStfAdd ASA = new AdminStfAdd(this, "新增员工", true);
         ASA.setVisible(true);
     }
+
     //查询员工信息
     private void menuItem28ActionPerformed() {
-        AdminStfInfo ASI=new AdminStfInfo(this,"查询员工信息",true);
+        AdminStfInfo ASI = new AdminStfInfo(this, "查询员工信息", true);
         ASI.setVisible(true);
     }
+
     //修改员工信息
     private void menuItem31ActionPerformed() {
         // TODO add your code here
     }
+
     //删除员工
     private void menuItem32ActionPerformed() {
-        AdminStfDelete ASD=new AdminStfDelete(this,"删除员工",true);
+        AdminStfDelete ASD = new AdminStfDelete(this, "删除员工", true);
         ASD.setVisible(true);
+    }
+
+    //新增车辆
+    private void menuItem33ActionPerformed() {
+        AdminCarAdd ACA = new AdminCarAdd(this, "新增车辆", true);
+        ACA.setVisible(true);
+    }
+
+    //查询车辆信息
+    private void menuItem38ActionPerformed() {
+        AdminCarInfo ACI = new AdminCarInfo(this, "查询信息", true);
+        ACI.setVisible(true);
+    }
+
+    private void menuItem35ActionPerformed() {
+        AdminChangeCarInfo ACCI = new AdminChangeCarInfo(this, "修改车辆信息", true);
+        ACCI.setVisible(true);
+    }
+
+    private void menuItem37ActionPerformed() {
+        CarScrap CS = new CarScrap(this, "报废车辆", true);
+        CS.setVisible(true);
+    }
+
+    private void menuItem15ActionPerformed() {
+        CarScrap CS = new CarScrap(this, "报废车辆", true);
+        CS.setVisible(true);
     }
 
 
@@ -135,7 +166,6 @@ public class FrmMain extends JFrame {
         menu7 = new JMenu();
         menuItem12 = new JMenuItem();
         menuItem13 = new JMenuItem();
-        menuItem14 = new JMenuItem();
         menuItem15 = new JMenuItem();
         menu8 = new JMenu();
         menuItem16 = new JMenuItem();
@@ -163,7 +193,6 @@ public class FrmMain extends JFrame {
         menuItem34 = new JMenuItem();
         menuItem38 = new JMenuItem();
         menuItem35 = new JMenuItem();
-        menuItem36 = new JMenuItem();
         menuItem37 = new JMenuItem();
         menu15 = new JMenu();
         menuItem42 = new JMenuItem();
@@ -176,7 +205,6 @@ public class FrmMain extends JFrame {
         menuItem43 = new JMenuItem();
         menuItem44 = new JMenuItem();
         menuItem45 = new JMenuItem();
-        menuItem47 = new JMenuItem();
         menu18 = new JMenu();
         menuItem48 = new JMenuItem();
         menuItem49 = new JMenuItem();
@@ -274,12 +302,9 @@ public class FrmMain extends JFrame {
                     menuItem13.setText("\u67e5\u8be2\u5168\u90e8\u53ef\u7528\u8f66\u8f86");
                     menu7.add(menuItem13);
 
-                    //---- menuItem14 ----
-                    menuItem14.setText("\u7533\u8bf7\u8f66\u8f86\u8c03\u914d");
-                    menu7.add(menuItem14);
-
                     //---- menuItem15 ----
                     menuItem15.setText("\u62a5\u5e9f\u8f66\u8f86");
+                    menuItem15.addActionListener(e -> menuItem15ActionPerformed());
                     menu7.add(menuItem15);
                 }
                 menu2.add(menu7);
@@ -395,6 +420,7 @@ public class FrmMain extends JFrame {
 
                     //---- menuItem33 ----
                     menuItem33.setText("\u65b0\u589e\u8f66\u8f86");
+                    menuItem33.addActionListener(e -> menuItem33ActionPerformed());
                     menu14.add(menuItem33);
 
                     //---- menuItem34 ----
@@ -402,19 +428,18 @@ public class FrmMain extends JFrame {
                     menu14.add(menuItem34);
 
                     //---- menuItem38 ----
-                    menuItem38.setText("\u8f66\u8f86\u8c03\u914d");
+                    menuItem38.setText("\u8f66\u8f86\u4fe1\u606f\u67e5\u8be2");
+                    menuItem38.addActionListener(e -> menuItem38ActionPerformed());
                     menu14.add(menuItem38);
 
                     //---- menuItem35 ----
                     menuItem35.setText("\u8f66\u8f86\u4fe1\u606f\u4fee\u6539");
+                    menuItem35.addActionListener(e -> menuItem35ActionPerformed());
                     menu14.add(menuItem35);
-
-                    //---- menuItem36 ----
-                    menuItem36.setText("\u8f66\u8f86\u5220\u9664");
-                    menu14.add(menuItem36);
 
                     //---- menuItem37 ----
                     menuItem37.setText("\u8f66\u8f86\u62a5\u5e9f");
+                    menuItem37.addActionListener(e -> menuItem37ActionPerformed());
                     menu14.add(menuItem37);
                 }
                 menu3.add(menu14);
@@ -464,10 +489,6 @@ public class FrmMain extends JFrame {
                         //---- menuItem45 ----
                         menuItem45.setText("\u4f18\u60e0\u5238\u4fee\u6539");
                         menu17.add(menuItem45);
-
-                        //---- menuItem47 ----
-                        menuItem47.setText("\u4f18\u60e0\u5238\u5220\u9664");
-                        menu17.add(menuItem47);
                     }
                     menu16.add(menu17);
 
@@ -538,7 +559,6 @@ public class FrmMain extends JFrame {
     private JMenu menu7;
     private JMenuItem menuItem12;
     private JMenuItem menuItem13;
-    private JMenuItem menuItem14;
     private JMenuItem menuItem15;
     private JMenu menu8;
     private JMenuItem menuItem16;
@@ -566,7 +586,6 @@ public class FrmMain extends JFrame {
     private JMenuItem menuItem34;
     private JMenuItem menuItem38;
     private JMenuItem menuItem35;
-    private JMenuItem menuItem36;
     private JMenuItem menuItem37;
     private JMenu menu15;
     private JMenuItem menuItem42;
@@ -579,7 +598,6 @@ public class FrmMain extends JFrame {
     private JMenuItem menuItem43;
     private JMenuItem menuItem44;
     private JMenuItem menuItem45;
-    private JMenuItem menuItem47;
     private JMenu menu18;
     private JMenuItem menuItem48;
     private JMenuItem menuItem49;

@@ -8,7 +8,7 @@ public class BeanCarScrap {
     /** 车辆编号 */
     private Integer carNumber ;
     /** 操作员编号 */
-    private Integer operatorNumber ;
+    private Integer stfNumber ;
     /** 报废时间 */
     private Date scrapDate ;
     /** 说明 */
@@ -33,12 +33,12 @@ public class BeanCarScrap {
         this.carNumber=carNumber;
     }
     /** 操作员编号 */
-    public Integer getOperatorNumber(){
-        return this.operatorNumber;
+    public Integer getStfNumber(){
+        return this.stfNumber;
     }
     /** 操作员编号 */
-    public void setOperatorNumber(Integer operatorNumber){
-        this.operatorNumber=operatorNumber;
+    public void setStfNumber(Integer operatorNumber){
+        this.stfNumber=operatorNumber;
     }
     /** 报废时间 */
     public Date getScrapDate(){

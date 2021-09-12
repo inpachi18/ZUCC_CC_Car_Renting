@@ -1,0 +1,49 @@
+JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:58:p, par l {seq l {comp label8:::p:98:p, space :18:18:p, comp branch:::p:282:p}, seq l {comp label9:::p:98:p, space :18:18:p, comp state:::p:282:p}, seq l {space :116:116:p, comp button1:::p::p}, seq l {par l {comp label7::l:p:98:p, comp label2::l:p::p}, space :p:18:p, par l {comp plate:::p:282:p, comp type:::p:282:p}}}, space ::65:x}}"
+			"$verticalGroup": "par l {seq l {space :p:41:p, par l {comp label2:::p::p, comp plate:::p::p}, space :p:12:p, par l {seq l {space :4:4:p, comp label7:::p:41:p}, comp type:::p::p}, space :12:12:p, par l {comp label8:::p:49:p, comp branch:::p::p}, space :12:12:p, par l {comp label9:::p:49:p, comp state:::p::p}, space :26:26:p, comp button1:::p::p, space ::41:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "车牌号"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "plate"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "车型编号"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "type"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "网点编号"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "branch"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "当前状态"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "state"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "确认"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", false ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 525, 430 )
+		} )
+	}
+}

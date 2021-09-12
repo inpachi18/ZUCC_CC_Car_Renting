@@ -3,8 +3,6 @@ package model;
 public class BeanCar {
     /** 车辆编号 */
     private Integer number ;
-    /** 网点编号 */
-    private Integer branchNumber ;
     /** 车牌号 */
     private String numberplate ;
     /** 所属车型 */
@@ -14,7 +12,7 @@ public class BeanCar {
     /** 当前状态 */
     private String state ;
 
-    public static final String[] tableTitles={"车辆编号","网点编号","车牌号","所属车型","所在网点","当前状态"};
+    public static final String[] tableTitles={"车辆编号","车牌号","所属车型","所在网点","当前状态"};
 
     /** 车辆编号 */
     public Integer getNumber(){
@@ -23,14 +21,6 @@ public class BeanCar {
     /** 车辆编号 */
     public void setNumber(Integer number){
         this.number=number;
-    }
-    /** 网点编号 */
-    public Integer getBranchNumber(){
-        return this.branchNumber;
-    }
-    /** 网点编号 */
-    public void setBranchNumber(Integer branchNumber){
-        this.branchNumber=branchNumber;
     }
     /** 车牌号 */
     public String getNumberplate(){

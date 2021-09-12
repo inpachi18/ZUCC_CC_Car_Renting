@@ -85,12 +85,9 @@ new FormModel {
 							"text": "查询全部可用车辆"
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem14"
-							"text": "申请车辆调配"
-						} )
-						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem15"
 							"text": "报废车辆"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem15ActionPerformed", false ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -192,6 +189,7 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem33"
 							"text": "新增车辆"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem33ActionPerformed", false ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem34"
@@ -199,19 +197,18 @@ new FormModel {
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem38"
-							"text": "车辆调配"
+							"text": "车辆信息查询"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem38ActionPerformed", false ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem35"
 							"text": "车辆信息修改"
-						} )
-						add( new FormComponent( "javax.swing.JMenuItem" ) {
-							name: "menuItem36"
-							"text": "车辆删除"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem35ActionPerformed", false ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem37"
 							"text": "车辆报废"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem37ActionPerformed", false ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -255,10 +252,6 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem45"
 								"text": "优惠券修改"
-							} )
-							add( new FormComponent( "javax.swing.JMenuItem" ) {
-								name: "menuItem47"
-								"text": "优惠券删除"
 							} )
 						} )
 						add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
