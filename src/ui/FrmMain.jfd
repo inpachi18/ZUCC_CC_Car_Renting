@@ -3,15 +3,18 @@ JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {comp menuBar1::::1893:x, comp scrollPane1::::1893:x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {comp menuBar1:::p::p, space :::p, comp scrollPane1::::1267:x, space :::p}}"
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {space :0:1741:x};par l {seq {space :0:0:x, comp scrollPane1:::p:1893:p, space :0:0:x}}"
+			"$verticalGroup": "par l {space :0:1267:x};par l {seq {space :0:0:x, comp scrollPane1:::p:1267:p, space :0:0:x}}"
 		} ) {
-			name: "主界面"
-			"maximumSize": new java.awt.Dimension( 1920, 1080 )
-			"minimumSize": new java.awt.Dimension( 1920, 1080 )
-			"preferredSize": new java.awt.Dimension( 1920, 1080 )
-			add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu1"
@@ -294,16 +297,10 @@ new FormModel {
 						} )
 					} )
 				} )
-			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane1"
-				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table1"
-				} )
-			} )
+			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 1905, 1320 )
+			"size": new java.awt.Dimension( 1745, 1135 )
 		} )
 	}
 }

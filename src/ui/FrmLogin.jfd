@@ -4,12 +4,12 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp label1:::::x}, seq {par l {seq l {space :p:38:p, comp btnreg:::p::p, space u:::p, comp btnstf:::p::p, space u:::p, comp btnuser:::p::p}, seq l {space :p:51:p, par l {seq l {comp label4:::p:98:p, space :18:18:p, comp textField1:::p:282:p}, seq l {comp label5:::p:98:p, space :18:18:p, comp passwordField1:::p:282:p}}}}, space :0:40:x}}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :p:23:p, comp label1:::p:55:p, space :p:30:p, par l {seq l {space :8:8:p, comp label4:::p:41:p}, comp textField1:::p::p}, space :12:12:p, par l {comp label5:::p:49:p, comp passwordField1:::p::p}, space :p:46:p, par b {comp btnreg::b:p::p, comp btnstf::b:p::p, comp btnuser::b:p::p}, space ::66:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp label1:::::x}, seq {par l {seq l {space :p:38:p, comp btnreg:::p::p, space u:::p, comp btnstf:::p::p, space u:::p, comp btnuser:::p::p}, seq l {space :p:51:p, par l {seq l {comp label4:::p:98:p, space :18:18:p, comp UserID:::p:282:p}, seq l {comp label5:::p:98:p, space :18:18:p, comp Pwd:::p:282:p}}}}, space :0:40:x}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:23:p, comp label1:::p:55:p, space :p:30:p, par l {seq l {space :8:8:p, comp label4:::p:41:p}, comp UserID:::p::p}, space :12:12:p, par l {comp label5:::p:49:p, comp Pwd:::p::p}, space :p:46:p, par b {comp btnreg::b:p::p, comp btnstf::b:p::p, comp btnuser::b:p::p}, space ::66:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
-				name: "passwordField1"
+				name: "Pwd"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label5"
@@ -20,7 +20,7 @@ new FormModel {
 				"text": "用户名"
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "textField1"
+				name: "UserID"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
