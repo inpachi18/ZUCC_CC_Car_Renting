@@ -14,8 +14,8 @@ import javax.swing.GroupLayout;
 /**
  * @author inpachi
  */
-public class ChangeStaffPassWord extends JDialog {
-    public ChangeStaffPassWord(Frame f, String s, Boolean b) {
+public class ChangeStfPassWord extends JDialog {
+    public ChangeStfPassWord(Frame f, String s, Boolean b) {
         super(f, s, b);
         initComponents();
     }

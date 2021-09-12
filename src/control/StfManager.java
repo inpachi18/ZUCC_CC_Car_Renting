@@ -237,25 +237,14 @@ public class StfManager {
         return result;
     }
 
-    public void DeleteStf(BeanStaff g) throws BaseException {
+    public void DelStf(String name) throws BaseException {
         Connection conn = null;
         try {
-            if (StfManager.currentStf.getBranch() != 0)
-                throw new BusinessException("需要管理员权限");
             conn = DBUtil.getConnection();
-            String sql = "select * from Car_Scrap where Staff_Number = ?";
-            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setInt(1, g.getNumber());
-            java.sql.ResultSet rs = pst.executeQuery();
-            if (rs.next())
-                throw new BusinessException("存在操作记录，无法删除");
-            rs.close();
-            pst.close();
-            sql = "delete from Staff where Number = ?";
-            pst = conn.prepareStatement(sql);
-            pst.setInt(1, g.getNumber());
-            pst.execute();
-            pst.close();
+            String sql = "delete from Staff where Name='"+name+"'";
+            java.sql.Statement st = conn.createStatement();
+            st.execute(sql);
+            st.close();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DbException(e);

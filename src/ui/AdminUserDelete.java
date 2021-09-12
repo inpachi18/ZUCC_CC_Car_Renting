@@ -15,8 +15,8 @@ import javax.swing.GroupLayout;
 /**
  * @author inpachi
  */
-public class UserDelete extends JDialog {
-    public UserDelete(Frame f, String s, Boolean b) {
+public class AdminUserDelete extends JDialog {
+    public AdminUserDelete(Frame f, String s, Boolean b) {
         super(f, s, b);
         initComponents();
     }

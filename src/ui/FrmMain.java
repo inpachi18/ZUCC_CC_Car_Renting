@@ -57,7 +57,7 @@ public class FrmMain extends JFrame {
 
     //员工自行修改密码
     private void menuItem10ActionPerformed() {
-        ChangeStaffPassWord CSP = new ChangeStaffPassWord(this, "修改密码", true);
+        ChangeStfPassWord CSP = new ChangeStfPassWord(this, "修改密码", true);
         CSP.setVisible(true);
     }
 
@@ -87,7 +87,7 @@ public class FrmMain extends JFrame {
 
     //删除用户
     private void menuItem25ActionPerformed() {
-        UserDelete UD = new UserDelete(this, "删除用户", true);
+        AdminUserDelete UD = new AdminUserDelete(this, "删除用户", true);
         UD.setVisible(true);
     }
 
@@ -106,6 +106,11 @@ public class FrmMain extends JFrame {
     //修改员工信息
     private void menuItem31ActionPerformed() {
         // TODO add your code here
+    }
+    //删除员工
+    private void menuItem32ActionPerformed() {
+        AdminStfDelete ASD=new AdminStfDelete(this,"删除员工",true);
+        ASD.setVisible(true);
     }
 
 
@@ -377,6 +382,7 @@ public class FrmMain extends JFrame {
 
                         //---- menuItem32 ----
                         menuItem32.setText("\u5458\u5de5\u4fe1\u606f\u5220\u9664");
+                        menuItem32.addActionListener(e -> menuItem32ActionPerformed());
                         menu13.add(menuItem32);
                     }
                     menu11.add(menu13);

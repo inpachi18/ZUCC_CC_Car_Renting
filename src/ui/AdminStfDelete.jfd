@@ -1,0 +1,35 @@
+JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:74:p, par l {seq l {comp label1:::p::p, space :85:85:p, comp name1:::p:244:p}, seq l {comp label2:::p::p, space :41:41:p, comp name2:::p:244:p}, seq l {space :123:123:p, comp button1:::p:140:p}}, space ::77:x}}"
+			"$verticalGroup": "par l {seq l {space :p:29:p, par l {comp label1:::p::p, comp name1:::p::p}, space :28:28:p, par l {comp label2:::p::p, comp name2:::p::p}, space :45:45:p, comp button1:::p::p, space ::55:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "用户名"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "name1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "重复用户名"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "name2"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "删除"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", false ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 550, 345 )
+		} )
+	}
+}

@@ -167,7 +167,7 @@ public class UserManager {
         Connection conn = null;
         try {
             conn = DBUtil.getConnection();
-            String sql = "delete from UserData where user_id='"+name+"'";
+            String sql = "delete from UserData where Name='"+name+"'";
             java.sql.Statement st = conn.createStatement();
             st.execute(sql);
             st.close();
@@ -179,7 +179,6 @@ public class UserManager {
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
         }
