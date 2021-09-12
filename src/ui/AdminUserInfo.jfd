@@ -1,0 +1,68 @@
+JFDML JFormDesigner: "7.0.4.0.360" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::37:x, par t {par t {seq l {comp label3:::p::p, space :32:32:p, comp tel:::p:230:p}, seq l {comp label4:::p::p, space :76:76:p, comp mail:::p:230:p}, seq l {comp label5:::p::p, space :32:32:p, comp city:::p:230:p}, seq l {comp label6:::p::p, space :32:32:p, comp date:::p:230:p}, seq t {comp label2:::p::p, space :p:76:p, comp sex:::p:230:p}, seq l {space :p:29:p, comp quit:::p::p, space :p:45:p, comp search:::p::p}}, seq {comp label1:::p::p, space :p:54:p, comp name:::p:230:p}}, space :p:27:p}}"
+			"$verticalGroup": "par l {seq l {space :p:30:p, par l {comp label1:::p::p, comp name:::p::p}, space s:::p, par l {comp label2:::p::p, comp sex:::p::p}, space :p:12:p, par l {comp label3:::p::p, comp tel:::p::p}, space :12:12:p, par l {comp label4:::p::p, comp mail:::p::p}, space :12:12:p, par l {comp label5:::p::p, comp city:::p::p}, space :12:12:p, par l {comp label6:::p::p, comp date:::p::p}, space s:::p, par b {comp quit::b:p::p, comp search::b:p::p}, space ::27:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "用户名："
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "sex"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "性别："
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "电话号码："
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "tel"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "mail"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "邮箱："
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "所在城市："
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "city"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "date"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "注册日期："
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "name"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "quit"
+				"text": "离开"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "quitActionPerformed", false ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "search"
+				"text": "查询"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "searchActionPerformed", false ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 440, 445 )
+		} )
+	}
+}

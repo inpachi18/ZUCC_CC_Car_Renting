@@ -18,8 +18,6 @@ public class ChangeUserPassword extends JDialog {
     public ChangeUserPassword(Frame f, String s, boolean b) {
         super(f, s, b);
         initComponents();
-        String name = UserManager.currentUser.getName();
-
     }
 
     private void confirmActionPerformed() {

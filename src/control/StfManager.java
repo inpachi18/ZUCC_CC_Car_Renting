@@ -162,7 +162,7 @@ public class StfManager {
                 throw new BusinessException("两次输入不一致");
             rs.close();
             pst.close();
-            sql = "update Staff set Password where Name=?";
+            sql = "update Staff set Password=? where Name=?";
             pst = conn.prepareStatement(sql);
             pst.setString(1, newPwd);
             pst.setString(2, name);

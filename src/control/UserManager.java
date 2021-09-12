@@ -163,27 +163,29 @@ public class UserManager {
 
     }
 
-    public void ChangeInfo(String name, String tel, String email, String city) throws BaseException {
+    public void ChangeInfo(String name, String sex, String tel, String email, String city) throws BaseException {
         Connection conn = null;
         try {
             conn = DBUtil.getConnection();
             BeanUser o = this.SearchInfo(name);
-            if (tel == null) tel = o.getSex();
+            if (sex == null) sex = o.getSex();
+            if (tel == null) tel = o.getTelephone();
             if (email == null) email = o.getEmail();
             if (city == null) city = o.getCity();
-            String sql="update UserData set Telephone=?,Email=?,City=? where Name=?";
-            java.sql.PreparedStatement pst= conn.prepareStatement(sql);
-            pst.setString(1,tel);
-            pst.setString(2,email);
-            pst.setString(3,city);
-            pst.setString(4,name);
+            String sql = "update UserData set Sex=?,Telephone=?,Email=?,City=? where Name=?";
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, sex);
+            pst.setString(2, tel);
+            pst.setString(3, email);
+            pst.setString(4, city);
+            pst.setString(5, name);
             pst.execute();
             pst.close();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DbException(e);
         } finally {
-            if(conn!=null)
+            if (conn != null)
                 try {
                     conn.close();
                 } catch (SQLException e) {
@@ -199,9 +201,11 @@ public class UserManager {
             conn = DBUtil.getConnection();
             String sql = "select * from UserData where Name=?";
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-            java.sql.ResultSet rs = pst.executeQuery();
             pst.setString(1, name);
+            java.sql.ResultSet rs = pst.executeQuery();
             while (rs.next()) {
+                if(rs.getString(2)==null || "".equals(rs.getString(2)))
+                    throw new BusinessException("请输入正确的用户名！");
                 BeanUser p = new BeanUser();
                 p.setNumber(rs.getInt(1));
                 p.setName(rs.getString(2));
@@ -267,7 +271,7 @@ public class UserManager {
     public static void main(String[] args) {
         UserManager comm = new UserManager();
         try {
-            comm.changePwd("Test1", "Test1", "Test2", "Test2");
+            comm.ChangeInfo("Test1", "男", "Test2", "Test2", "123");
         } catch (BaseException e) {
             e.printStackTrace();
         }

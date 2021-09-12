@@ -25,10 +25,11 @@ public class ChangeUserInfo extends JDialog {
         try {
             UserManager a = new UserManager();
             String name = UserManager.currentUser.getName();
+            String sex = null;
             String tel = this.UsrTel.getText();
             String email = this.UsrMail.getText();
             String city = this.UsrCity.getText();
-            a.ChangeInfo(name, tel, email, city);
+            a.ChangeInfo(name, sex, tel, email, city);
             this.setVisible(false);
         } catch (BaseException e1) {
             JOptionPane.showMessageDialog(null, e1.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);

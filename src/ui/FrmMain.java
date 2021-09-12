@@ -6,7 +6,6 @@ package ui;
 
 import control.StfManager;
 import control.UserManager;
-import model.BeanUser;
 
 import java.awt.event.*;
 import javax.swing.*;
@@ -39,9 +38,7 @@ public class FrmMain extends JFrame {
 
     }
 
-    private void menuItem26ActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
+
 
 
     // 用户个人信息管理
@@ -49,16 +46,47 @@ public class FrmMain extends JFrame {
         UserInfo info=new UserInfo(this,"个人信息",true);
         info.setVisible(true);
     }
-
     private void menuItem2ActionPerformed() {
         ChangeUserPassword CUP=new ChangeUserPassword(this,"修改密码",true);
         CUP.setVisible(true);
     }
-
     private void menuItem3ActionPerformed() {
         ChangeUserInfo CUI=new ChangeUserInfo(this,"修改个人信息",true);
         CUI.setVisible(true);
     }
+
+    //员工自行修改密码
+    private void menuItem10ActionPerformed() {
+        ChangeStaffPassWord CSP=new ChangeStaffPassWord(this,"修改密码",true);
+        CSP.setVisible(true);
+    }
+
+    //管理员管理用户信息
+    //直接添加用户
+    private void menuItem26ActionPerformed(ActionEvent e) {
+        AdminUserAdd AUA=new AdminUserAdd(this,"添加用户",true);
+        AUA.setVisible(true);
+    }
+    //查看用户列表
+    private void menuItem29ActionPerformed() {
+        // TODO add your code here
+    }
+    //查看用户信息
+    private void menuItem23ActionPerformed() {
+        AdminUserInfo AUI=new AdminUserInfo(this,"查询用户信息",true);
+        AUI.setVisible(true);
+    }
+    //修改信息
+    private void menuItem24ActionPerformed() {
+        AdminChangeUserInfo ACUI = new AdminChangeUserInfo(this,"修改用户信息",true);
+        ACUI.setVisible(true);
+    }
+    //删除用户
+    private void menuItem25ActionPerformed() {
+        // TODO add your code here
+    }
+
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -203,6 +231,7 @@ public class FrmMain extends JFrame {
 
                     //---- menuItem10 ----
                     menuItem10.setText("\u4fee\u6539\u5bc6\u7801");
+                    menuItem10.addActionListener(e -> menuItem10ActionPerformed());
                     menu6.add(menuItem10);
                 }
                 menu2.add(menu6);
@@ -282,18 +311,22 @@ public class FrmMain extends JFrame {
 
                         //---- menuItem29 ----
                         menuItem29.setText("\u67e5\u770b\u7528\u6237\u5217\u8868");
+                        menuItem29.addActionListener(e -> menuItem29ActionPerformed());
                         menu12.add(menuItem29);
 
                         //---- menuItem23 ----
                         menuItem23.setText("\u7528\u6237\u4fe1\u606f\u67e5\u8be2");
+                        menuItem23.addActionListener(e -> menuItem23ActionPerformed());
                         menu12.add(menuItem23);
 
                         //---- menuItem24 ----
                         menuItem24.setText("\u7528\u6237\u4fe1\u606f\u4fee\u6539");
+                        menuItem24.addActionListener(e -> menuItem24ActionPerformed());
                         menu12.add(menuItem24);
 
                         //---- menuItem25 ----
                         menuItem25.setText("\u7528\u6237\u4fe1\u606f\u5220\u9664");
+                        menuItem25.addActionListener(e -> menuItem25ActionPerformed());
                         menu12.add(menuItem25);
                     }
                     menu11.add(menu12);

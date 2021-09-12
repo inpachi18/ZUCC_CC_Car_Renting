@@ -70,6 +70,7 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem10"
 							"text": "修改密码"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem10ActionPerformed", false ) )
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -138,18 +139,22 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem29"
 								"text": "查看用户列表"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem29ActionPerformed", false ) )
 							} )
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem23"
 								"text": "用户信息查询"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem23ActionPerformed", false ) )
 							} )
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem24"
 								"text": "用户信息修改"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem24ActionPerformed", false ) )
 							} )
 							add( new FormComponent( "javax.swing.JMenuItem" ) {
 								name: "menuItem25"
 								"text": "用户信息删除"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem25ActionPerformed", false ) )
 							} )
 						} )
 						add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
