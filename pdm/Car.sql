@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS Car_Type;
 CREATE TABLE Car_Type(
-    Number int    COMMENT '类别编号' ,
-    Name varchar(60)    COMMENT '类别名称' ,
-    Information varchar(1024)    COMMENT '类别描述' ,
+    Number INT    COMMENT '类别编号' ,
+    Name VARCHAR(60)    COMMENT '类别名称' ,
+    Information VARCHAR(900)    COMMENT '类别描述' ,
     PRIMARY KEY (Number)
 )  COMMENT = '汽车类别';
 
@@ -11,15 +11,15 @@ CREATE INDEX Identifier_1 ON Car_Type(Number);
 
 DROP TABLE IF EXISTS Car_Model;
 CREATE TABLE Car_Model(
-    Number int    COMMENT '车型编号' ,
-    Name varchar(60)    COMMENT '车型名称' ,
-    Brand varchar(60)    COMMENT '品牌' ,
-    Displacement varchar(60)    COMMENT '排量' ,
-    Gears varchar(60)    COMMENT '排挡' ,
-    Seats int    COMMENT '座位数' ,
-    Price float    COMMENT '价格' ,
-    Picture varchar(1024)    COMMENT '图片（链接）' ,
-    Type int    COMMENT '所属类别' ,
+    Number INT    COMMENT '车型编号' ,
+    Name VARCHAR(60)    COMMENT '车型名称' ,
+    Brand VARCHAR(60)    COMMENT '品牌' ,
+    Displacement VARCHAR(60)    COMMENT '排量' ,
+    Gears VARCHAR(60)    COMMENT '排挡' ,
+    Seats INT    COMMENT '座位数' ,
+    Price DECIMAL(24,6)    COMMENT '价格' ,
+    Picture VARCHAR(60)    COMMENT '图片（链接）' ,
+    Type DECIMAL(24,6)    COMMENT '所属类别' ,
     PRIMARY KEY (Number)
 )  COMMENT = '车型信息';
 
@@ -69,14 +69,14 @@ CREATE INDEX Identifier_1 ON FlashSale(Sale_Number);
 
 DROP TABLE IF EXISTS UserData;
 CREATE TABLE UserData(
-    Number int    COMMENT '用户编号' ,
-    Name varchar(60)    COMMENT '姓名' ,
-    Sex varchar(60)    COMMENT '性别' ,
-    Password varchar(60)    COMMENT '密码' ,
-    Telephone varchar(60)    COMMENT '手机号码' ,
-    Email varchar(60)    COMMENT '邮箱' ,
-    City varchar(60)    COMMENT '所在城市' ,
-    RegisterDate date    COMMENT '注册时间' ,
+    Number INT    COMMENT '用户编号' ,
+    Name VARCHAR(60)    COMMENT '姓名' ,
+    Sex VARCHAR(60)    COMMENT '性别' ,
+    Password VARCHAR(60)    COMMENT '密码' ,
+    Telephone VARCHAR(60)    COMMENT '手机号码' ,
+    Email VARCHAR(60)    COMMENT '邮箱' ,
+    City VARCHAR(60)    COMMENT '所在城市' ,
+    RegisterDate DATETIME    COMMENT '注册时间' ,
     PRIMARY KEY (Number)
 )  COMMENT = '用户信息';
 
@@ -117,10 +117,10 @@ CREATE INDEX Identifier_1 ON Car_Scrap(Scrap_Number);
 
 DROP TABLE IF EXISTS Staff;
 CREATE TABLE Staff(
-    Number int    COMMENT '员工编号' ,
-    Name varchar(60)    COMMENT '员工姓名' ,
-    Password varchar(60)    COMMENT '登陆密码' ,
-    Branch int    COMMENT '所属网点' ,
+    Number INT    COMMENT '员工编号' ,
+    Name VARCHAR(60)    COMMENT '员工姓名' ,
+    Password VARCHAR(60)    COMMENT '登陆密码' ,
+    Branch INT    COMMENT '所属网点' ,
     PRIMARY KEY (Number)
 )  COMMENT = '员工信息表';
 
@@ -140,4 +140,17 @@ CREATE TABLE Car_Informatin(
 
 
 CREATE INDEX Identifier_1 ON Car_Informatin(Number);
+
+DROP TABLE IF EXISTS User;
+CREATE TABLE User(
+    Number INT    COMMENT '用户编号' ,
+    Name VARCHAR(60)    COMMENT '姓名' ,
+    Sex VARCHAR(60)    COMMENT '性别' ,
+    Password VARCHAR(60)    COMMENT '密码' ,
+    Telephone VARCHAR(60)    COMMENT '手机号码' ,
+    Email VARCHAR(60)    COMMENT '邮箱' ,
+    City VARCHAR(60)    COMMENT '所在城市' ,
+    RegisterDate DATETIME    COMMENT '注册时间' ,
+    PRIMARY KEY (Number)
+)  COMMENT = '';
 

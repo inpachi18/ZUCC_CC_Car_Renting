@@ -12,6 +12,8 @@ public class BeanBranch {
     /** 联系电话 */
     private String telephone ;
 
+    public static final String[] tableTitles={"网点编号","网点名称","所属城市","地址","联系电话"};
+
     /** 网点编号 */
     public Integer getNumber(){
         return this.number;

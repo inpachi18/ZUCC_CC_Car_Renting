@@ -4,16 +4,10 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {space :0:1741:x};par l {seq {space :0:0:x, comp scrollPane1:::p:1893:p, space :0:0:x}}"
-			"$verticalGroup": "par l {space :0:1267:x};par l {seq {space :0:0:x, comp scrollPane1:::p:1267:p, space :0:0:x}}"
+			"$horizontalGroup": "par l {space :0:1741:x}"
+			"$verticalGroup": "par l {space :0:1050:x}"
 		} ) {
 			name: "this"
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane1"
-				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table1"
-				} )
-			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {

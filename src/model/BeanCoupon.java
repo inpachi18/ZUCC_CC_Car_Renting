@@ -14,6 +14,8 @@ public class BeanCoupon {
     /** 结束日期 */
     private Date finishdate ;
 
+    public static final String[] tableTitles={"优惠券编号","内容","减免金额","起始日期","结束日期"};
+
     /** 优惠券编号 */
     public Integer getNumber(){
         return this.number;

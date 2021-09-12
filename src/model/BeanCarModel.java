@@ -20,6 +20,8 @@ public class BeanCarModel {
     /** 所属类别 */
     private Integer type ;
 
+    public static final String[] tableTitles={"车型编号","车型名称","品牌","排量","排挡","座位数","价格","图片（链接）","所属类别"};
+
     /** 车型编号 */
     public Integer getNumber(){
         return this.number;

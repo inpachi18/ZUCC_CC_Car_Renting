@@ -95,8 +95,6 @@ public class FrmMain extends JFrame {
         menuItem50 = new JMenuItem();
         menuItem51 = new JMenuItem();
         menuItem52 = new JMenuItem();
-        scrollPane1 = new JScrollPane();
-        table1 = new JTable();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -423,30 +421,15 @@ public class FrmMain extends JFrame {
         }
         setJMenuBar(menuBar1);
 
-        //======== scrollPane1 ========
-        {
-            scrollPane1.setViewportView(table1);
-        }
-
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-                contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createParallelGroup()
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 1893, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(0, 1741, Short.MAX_VALUE)
+            contentPaneLayout.createParallelGroup()
+                .addGap(0, 1741, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
-                contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createParallelGroup()
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 1267, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(0, 1267, Short.MAX_VALUE)
+            contentPaneLayout.createParallelGroup()
+                .addGap(0, 1050, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -525,7 +508,5 @@ public class FrmMain extends JFrame {
     private JMenuItem menuItem50;
     private JMenuItem menuItem51;
     private JMenuItem menuItem52;
-    private JScrollPane scrollPane1;
-    private JTable table1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

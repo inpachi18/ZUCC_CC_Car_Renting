@@ -18,6 +18,8 @@ public class BeanFlashSale {
     /** 结束日期 */
     private Date finishDate ;
 
+    public static final String[] tableTitles={"促销编号","网点编号","车辆型号","促销折扣","促销数量","起始日期","结束日期"};
+
     /** 促销编号 */
     public Integer getSaleNumber(){
         return this.saleNumber;

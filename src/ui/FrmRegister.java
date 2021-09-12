@@ -4,6 +4,9 @@
 
 package ui;
 
+import control.UserManager;
+import util.BaseException;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -13,17 +16,25 @@ import javax.swing.GroupLayout;
  */
 public class FrmRegister extends JDialog {
     public FrmRegister(Dialog d, String s, Boolean b) {
-        super(d,s,b);
+        super(d, s, b);
         initComponents();
     }
 
     private void btnregActionPerformed() {
-        String name=this.UsrName.getText();
-        String pwd=new String(this.UsrPwd.getPassword());
-        String sex=this.UsrSex.getText();
-        String tel=this.UsrTel.getText();
-        String email=this.UsrMail.getText();
-        String city=this.UsrCity.getText();
+        String name = this.UsrName.getText();
+        String pwd = new String(this.UsrPwd.getPassword());
+        String sex = this.UsrSex.getText();
+        String tel = this.UsrTel.getText();
+        String email = this.UsrMail.getText();
+        String city = this.UsrCity.getText();
+        try {
+            UserManager a = new UserManager();
+            a.AddUsers(name,sex,pwd,tel,email,city);
+            this.setVisible(false);
+        } catch (BaseException e1) {
+            JOptionPane.showMessageDialog(null, e1.getMessage(),"错误",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }
 
     private void initComponents() {
@@ -49,8 +60,8 @@ public class FrmRegister extends JDialog {
         //---- btnreg ----
         btnreg.setText("\u6ce8\u518c");
         btnreg.addActionListener(e -> {
-			btnregActionPerformed();
-		});
+            btnregActionPerformed();
+        });
 
         //---- label9 ----
         label9.setText("\u6240\u5728\u57ce\u5e02");
@@ -77,84 +88,84 @@ public class FrmRegister extends JDialog {
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 529, GroupLayout.PREFERRED_SIZE)
+                contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(UsrName, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(UsrPwd, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(UsrSex, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(label7, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(UsrTel, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(label8, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(UsrMail, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(54, 54, 54)
-                            .addComponent(label9, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(UsrCity, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(205, 205, 205)
-                            .addComponent(btnreg)))
-                    .addContainerGap(11, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 529, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(54, 54, 54)
+                                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(UsrName, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(54, 54, 54)
+                                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(UsrPwd, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(54, 54, 54)
+                                                .addComponent(label6, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(UsrSex, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(54, 54, 54)
+                                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(UsrTel, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(54, 54, 54)
+                                                .addComponent(label8, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(UsrMail, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(54, 54, 54)
+                                                .addComponent(label9, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(UsrCity, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(205, 205, 205)
+                                                .addComponent(btnreg)))
+                                .addContainerGap(11, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                    .addGap(12, 12, 12)
-                    .addGroup(contentPaneLayout.createParallelGroup()
+                contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
-                        .addComponent(UsrName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(12, 12, 12)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(label5, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(UsrPwd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(6, 6, 6)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
-                        .addComponent(UsrSex, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(6, 6, 6)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(4, 4, 4)
-                            .addComponent(label7, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
-                        .addComponent(UsrTel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(12, 12, 12)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(label8, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(UsrMail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(12, 12, 12)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(UsrCity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(12, 12, 12)
-                    .addComponent(btnreg)
-                    .addContainerGap(61, Short.MAX_VALUE))
+                                .addGap(48, 48, 48)
+                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(8, 8, 8)
+                                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(UsrName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(label5, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(UsrPwd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(8, 8, 8)
+                                                .addComponent(label6, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(UsrSex, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addGap(4, 4, 4)
+                                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(UsrTel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(label8, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(UsrMail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(UsrCity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addComponent(btnreg)
+                                .addContainerGap(61, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());

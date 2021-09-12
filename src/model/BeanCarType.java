@@ -1,11 +1,14 @@
 package model;
 
 public class BeanCarType {
+    /** 类别编号 **/
     private Integer number ;
     /** 类别名称 */
     private String name ;
     /** 类别描述 */
     private String information ;
+
+    public static final String[] tableTitles={"类别编号","类别名称","类别描述"};
 
     /** 类别编号 */
     public Integer getNumber(){

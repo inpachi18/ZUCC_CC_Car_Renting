@@ -14,6 +14,8 @@ public class BeanCarScrap {
     /** 说明 */
     private String information ;
 
+    public static final String[] tableTitles={"报废编号","车辆编号","操作员编号","报废时间","说明"};
+
     /** 报废编号 */
     public Integer getScrapNumber(){
         return this.scrapNumber;

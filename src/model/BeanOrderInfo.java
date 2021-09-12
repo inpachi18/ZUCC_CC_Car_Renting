@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class BeanOrder {
+public class BeanOrderInfo {
     /** 订单编号 */
     private Integer orderNumber ;
     /** 用户编号 */
@@ -25,6 +25,8 @@ public class BeanOrder {
     private Integer couponNumber ;
     /** 订单状态 */
     private String orderState ;
+
+    public static final String[] tableTitles={"订单编号","用户编号","提车网点","还车网点","提车时间","还车时间","租车时长","原始金额","结算金额","优惠券编号","订单状态"};
 
     /** 订单编号 */
     public Integer getOrderNumber(){

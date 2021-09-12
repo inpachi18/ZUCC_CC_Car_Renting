@@ -14,6 +14,8 @@ public class BeanCar {
     /** 当前状态 */
     private String state ;
 
+    public static final String[] tableTitles={"车辆编号","网点编号","车牌号","所属车型","所在网点","当前状态"};
+
     /** 车辆编号 */
     public Integer getNumber(){
         return this.number;

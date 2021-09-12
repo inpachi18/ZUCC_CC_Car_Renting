@@ -21,6 +21,8 @@ public class BeanUser {
     /** 注册时间 */
     private Date registerdate ;
 
+    public static final String[] tabletitles={"用户编号","用户姓名","用户性别","用户密码","用户电话","用户邮箱","用户城市","注册时间"};
+
     /** 用户编号 */
     public Integer getNumber(){
         return this.number;
