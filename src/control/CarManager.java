@@ -1,14 +1,12 @@
 package control;
 
 import model.BeanCar;
-import model.BeanUser;
 import util.BaseException;
 import util.BusinessException;
 import util.DBUtil;
 import util.DbException;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ public class CarManager {
                 BeanCar c = new BeanCar();
                 c.setNumber(rs.getInt(1));
                 c.setNumberplate(rs.getString(2));
-                c.setType(rs.getInt(3));
+                c.setModel(rs.getInt(3));
                 c.setBranch(rs.getInt(4));
                 c.setState(rs.getString(5));
                 result.add(c);
@@ -58,7 +56,7 @@ public class CarManager {
                 BeanCar c = new BeanCar();
                 c.setNumber(rs.getInt(1));
                 c.setNumberplate(rs.getString(2));
-                c.setType(rs.getInt(3));
+                c.setModel(rs.getInt(3));
                 c.setBranch(rs.getInt(4));
                 c.setState(rs.getString(5));
                 result.add(c);
@@ -150,7 +148,7 @@ public class CarManager {
                 BeanCar p = new BeanCar();
                 p.setNumber(rs.getInt(1));
                 p.setNumberplate(rs.getString(2));
-                p.setType(rs.getInt(3));
+                p.setModel(rs.getInt(3));
                 p.setBranch(rs.getInt(4));
                 p.setState(rs.getString(5));
                 result = p;
@@ -174,7 +172,7 @@ public class CarManager {
         try {
             conn = DBUtil.getConnection();
             BeanCar o = this.SearchInfo(plate);
-            if (type == -1) type = o.getType();
+            if (type == -1) type = o.getModel();
             if (branch == -1) branch = o.getBranch();
             if (state == null) state = o.getState();
             String sql = "update Car_Information set Type=?,Branch=?,State=?, where NumberPlate=?";

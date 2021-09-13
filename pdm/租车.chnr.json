@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "3.2.0",
   "createdTime": "2021-9-7 08:57:29",
-  "updatedTime": "2021-9-12 11:45:26",
+  "updatedTime": "2021-9-13 07:16:42",
   "dbConns": [],
   "profile": {
     "default": {
@@ -2251,26 +2251,6 @@
           "hideInGraph": false,
           "typeFullName": "int",
           "primaryKeyName": "√",
-          "notNullName": "",
-          "autoIncrementName": "",
-          "refDict": ""
-        },
-        {
-          "rowNo": 2,
-          "defKey": "Branch_Number",
-          "defName": "网点编号",
-          "comment": "",
-          "domain": "Int",
-          "type": "INT",
-          "len": "",
-          "scale": "",
-          "primaryKey": null,
-          "notNull": null,
-          "autoIncrement": false,
-          "defaultValue": "",
-          "hideInGraph": false,
-          "typeFullName": "int",
-          "primaryKeyName": "",
           "notNullName": "",
           "autoIncrementName": "",
           "refDict": ""

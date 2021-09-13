@@ -6,7 +6,7 @@ public class BeanCar {
     /** 车牌号 */
     private String numberplate ;
     /** 所属车型 */
-    private Integer type ;
+    private Integer Model;
     /** 所在网点 */
     private Integer branch ;
     /** 当前状态 */
@@ -31,12 +31,12 @@ public class BeanCar {
         this.numberplate=numberplate;
     }
     /** 所属车型 */
-    public Integer getType(){
-        return this.type;
+    public Integer getModel(){
+        return this.Model;
     }
     /** 所属车型 */
-    public void setType(Integer type){
-        this.type=type;
+    public void setModel(Integer model){
+        this.Model = model;
     }
     /** 所在网点 */
     public Integer getBranch(){

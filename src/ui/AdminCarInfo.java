@@ -5,9 +5,7 @@
 package ui;
 
 import control.CarManager;
-import control.UserManager;
 import model.BeanCar;
-import model.BeanUser;
 import util.BaseException;
 
 import java.awt.*;
@@ -31,7 +29,7 @@ public class AdminCarInfo extends JDialog {
         try {
             String plate = this.plate.getText();
             BeanCar o = CarManager.SearchInfo(plate);
-            this.type.setText(String.valueOf(o.getType()));
+            this.type.setText(String.valueOf(o.getModel()));
             this.branch.setText(String.valueOf(o.getBranch()));
             this.state.setText(o.getState());
         } catch (BaseException e1) {

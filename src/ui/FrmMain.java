@@ -35,6 +35,11 @@ public class FrmMain extends JFrame {
                 this.menu3.setVisible(true);
             }
         }
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
+            }
+        });
 
 
     }
@@ -144,6 +149,25 @@ public class FrmMain extends JFrame {
         CS.setVisible(true);
     }
 
+    private void menuItem5ActionPerformed() {
+        FrmCouponManager_GetCoupon F = new FrmCouponManager_GetCoupon(this,"领取优惠券",true);
+        F.setVisible(true);
+    }
+
+    private void menuItem17ActionPerformed() {
+
+    }
+
+    private void menuItem16ActionPerformed() {
+        FrmCouponManager F=new FrmCouponManager(this,"管理优惠券",true);
+        F.setVisible(true);
+    }
+
+    private void menuItem43ActionPerformed() {
+        FrmCouponManager F=new FrmCouponManager(this,"管理优惠券",true);
+        F.setVisible(true);
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -169,11 +193,8 @@ public class FrmMain extends JFrame {
         menuItem15 = new JMenuItem();
         menu8 = new JMenu();
         menuItem16 = new JMenuItem();
-        menuItem17 = new JMenuItem();
-        menuItem18 = new JMenuItem();
         menu9 = new JMenu();
         menuItem19 = new JMenuItem();
-        menuItem20 = new JMenuItem();
         menu3 = new JMenu();
         menu11 = new JMenu();
         menu12 = new JMenu();
@@ -200,11 +221,7 @@ public class FrmMain extends JFrame {
         menuItem40 = new JMenuItem();
         menuItem41 = new JMenuItem();
         menu16 = new JMenu();
-        menu17 = new JMenu();
-        menuItem46 = new JMenuItem();
         menuItem43 = new JMenuItem();
-        menuItem44 = new JMenuItem();
-        menuItem45 = new JMenuItem();
         menu18 = new JMenu();
         menuItem48 = new JMenuItem();
         menuItem49 = new JMenuItem();
@@ -252,7 +269,8 @@ public class FrmMain extends JFrame {
                     menu5.add(menuItem4);
 
                     //---- menuItem5 ----
-                    menuItem5.setText("\u67e5\u8be2\u4f18\u60e0\u5238\u5217\u8868");
+                    menuItem5.setText("\u9886\u53d6\u4f18\u60e0\u5238");
+                    menuItem5.addActionListener(e -> menuItem5ActionPerformed());
                     menu5.add(menuItem5);
 
                     //---- menuItem8 ----
@@ -260,11 +278,11 @@ public class FrmMain extends JFrame {
                     menu5.add(menuItem8);
 
                     //---- menuItem6 ----
-                    menuItem6.setText("\u79df\u7528\u8f66\u8f86");
+                    menuItem6.setText("\u521b\u5efa\u8ba2\u5355");
                     menu5.add(menuItem6);
 
                     //---- menuItem7 ----
-                    menuItem7.setText("\u5f52\u8fd8\u8f66\u8f86");
+                    menuItem7.setText("\u5b8c\u6210\u8ba2\u5355");
                     menu5.add(menuItem7);
 
                     //---- menuItem9 ----
@@ -315,15 +333,8 @@ public class FrmMain extends JFrame {
 
                     //---- menuItem16 ----
                     menuItem16.setText("\u4f18\u60e0\u5238\u5217\u8868\u67e5\u8be2");
+                    menuItem16.addActionListener(e -> menuItem16ActionPerformed());
                     menu8.add(menuItem16);
-
-                    //---- menuItem17 ----
-                    menuItem17.setText("\u4f18\u60e0\u5238\u6dfb\u52a0");
-                    menu8.add(menuItem17);
-
-                    //---- menuItem18 ----
-                    menuItem18.setText("\u4f18\u60e0\u5238\u4fee\u6539");
-                    menu8.add(menuItem18);
                 }
                 menu2.add(menu8);
 
@@ -334,10 +345,6 @@ public class FrmMain extends JFrame {
                     //---- menuItem19 ----
                     menuItem19.setText("\u8ba2\u5355\u67e5\u8be2");
                     menu9.add(menuItem19);
-
-                    //---- menuItem20 ----
-                    menuItem20.setText("\u8ba2\u5355\u4fee\u6539");
-                    menu9.add(menuItem20);
                 }
                 menu2.add(menu9);
             }
@@ -470,27 +477,10 @@ public class FrmMain extends JFrame {
                 {
                     menu16.setText("\u4fc3\u9500\u7ba1\u7406");
 
-                    //======== menu17 ========
-                    {
-                        menu17.setText("\u4f18\u60e0\u5238\u7ba1\u7406");
-
-                        //---- menuItem46 ----
-                        menuItem46.setText("\u4f18\u60e0\u5238\u521b\u5efa");
-                        menu17.add(menuItem46);
-
-                        //---- menuItem43 ----
-                        menuItem43.setText("\u4f18\u60e0\u5238\u5217\u8868");
-                        menu17.add(menuItem43);
-
-                        //---- menuItem44 ----
-                        menuItem44.setText("\u4f18\u60e0\u5238\u67e5\u8be2");
-                        menu17.add(menuItem44);
-
-                        //---- menuItem45 ----
-                        menuItem45.setText("\u4f18\u60e0\u5238\u4fee\u6539");
-                        menu17.add(menuItem45);
-                    }
-                    menu16.add(menu17);
+                    //---- menuItem43 ----
+                    menuItem43.setText("\u4f18\u60e0\u5238\u5217\u8868");
+                    menuItem43.addActionListener(e -> menuItem43ActionPerformed());
+                    menu16.add(menuItem43);
 
                     //======== menu18 ========
                     {
@@ -562,11 +552,8 @@ public class FrmMain extends JFrame {
     private JMenuItem menuItem15;
     private JMenu menu8;
     private JMenuItem menuItem16;
-    private JMenuItem menuItem17;
-    private JMenuItem menuItem18;
     private JMenu menu9;
     private JMenuItem menuItem19;
-    private JMenuItem menuItem20;
     private JMenu menu3;
     private JMenu menu11;
     private JMenu menu12;
@@ -593,11 +580,7 @@ public class FrmMain extends JFrame {
     private JMenuItem menuItem40;
     private JMenuItem menuItem41;
     private JMenu menu16;
-    private JMenu menu17;
-    private JMenuItem menuItem46;
     private JMenuItem menuItem43;
-    private JMenuItem menuItem44;
-    private JMenuItem menuItem45;
     private JMenu menu18;
     private JMenuItem menuItem48;
     private JMenuItem menuItem49;

@@ -3,57 +3,62 @@ package model;
 import java.util.Date;
 
 public class BeanCoupon {
-    /** 优惠券编号 */
-    private Integer number ;
-    /** 内容 */
-    private String information ;
-    /** 减免金额 */
-    private Double discount ;
-    /** 起始日期 */
-    private Date startdate ;
-    /** 结束日期 */
-    private Date finishdate ;
+    private int coupon_id;
+    private int location_id;
+    private String content;
+    private float discount_amount;
+    private Date start_date;
+    private Date end_date;
+    private String status;
+    private String received_status;
 
-    public static final String[] tableTitles={"优惠券编号","内容","减免金额","起始日期","结束日期"};
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public String getReceived_status() {
+        return received_status;
+    }
+    public void setReceived_status(String received_status) {
+        this.received_status = received_status;
+    }
 
-    /** 优惠券编号 */
-    public Integer getNumber(){
-        return this.number;
+    public int getCoupon_id() {
+        return coupon_id;
     }
-    /** 优惠券编号 */
-    public void setNumber(Integer number){
-        this.number=number;
+    public void setCoupon_id(int coupon_id) {
+        this.coupon_id = coupon_id;
     }
-    /** 内容 */
-    public String getInformation(){
-        return this.information;
+    public int getLocation_id() {
+        return location_id;
     }
-    /** 内容 */
-    public void setInformation(String information){
-        this.information=information;
+    public void setLocation_id(int location_id) {
+        this.location_id=location_id;
     }
-    /** 减免金额 */
-    public Double getDiscount(){
-        return this.discount;
+    public String getContent() {
+        return content;
     }
-    /** 减免金额 */
-    public void setDiscount(Double discount){
-        this.discount=discount;
+    public void setContent(String content) {
+        this.content = content;
     }
-    /** 起始日期 */
-    public Date getStartdate(){
-        return this.startdate;
+    public float getDiscount_amount() {
+        return discount_amount;
     }
-    /** 起始日期 */
-    public void setStartdate(Date startdate){
-        this.startdate=startdate;
+    public void setDiscount_amount(float discount_amount) {
+        this.discount_amount = discount_amount;
     }
-    /** 结束日期 */
-    public Date getFinishdate(){
-        return this.finishdate;
+    public Date getStart_date() {
+        return start_date;
     }
-    /** 结束日期 */
-    public void setFinishdate(Date finishdate){
-        this.finishdate=finishdate;
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+    public Date getEnd_date() {
+        return end_date;
+    }
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
 }
